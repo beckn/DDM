@@ -1,0 +1,100 @@
+{
+  "context": {
+    "domain": "beckn:dataset:ddm:1.0.0",
+    "action": "confirm",
+    "version": "2.0.0",
+    "bap_id": "ev-charging.sandbox1.com",
+    "bap_uri": "https://ev-charging.sandbox1.com",
+    "bpp_id": "ev-charging.sandbox2.com",
+    "bpp_uri": "https://ev-charging.sandbox2.com",
+    "transaction_id": "txn-rain-2025-03-0001",
+    "message_id": "msg-rain-00000007",
+    "timestamp": "2025-02-15T10:05:00Z",
+    "ttl": "PT30S"
+  },
+  "message": {
+    "order": {
+      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
+      "@type": "beckn:Order",
+      "beckn:orderStatus": "PENDING",
+      "beckn:seller": "climate-data-provider-001",
+      "beckn:buyer": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
+        "@type": "beckn:Buyer",
+        "beckn:id": "buyer-hydrology-lab-001",
+        "beckn:role": "BUYER",
+        "beckn:displayName": "Hydrology Lab, Delhi",
+        "beckn:telephone": "+91-11-4000-1234",
+        "beckn:email": "data-team@hydrology.example.in",
+        "beckn:taxID": "GSTIN-07AAAAH0001A1Z5"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:lineId": "line-001",
+          "beckn:orderedItem": "ds-rainprob-delhi-ncr-march-2025",
+          "beckn:quantity": {
+            "unitText": "dataset",
+            "unitCode": "EA",
+            "unitQuantity": 1
+          },
+          "beckn:price": {
+            "currency": "INR",
+            "value": 2499.00,
+            "components": [
+              {
+                "type": "UNIT",
+                "value": 2117.80,
+                "currency": "INR",
+                "description": "Rainwater Probability Delhi-NCR March 2025 — Parquet export"
+              },
+              {
+                "type": "TAX",
+                "value": 381.20,
+                "currency": "INR",
+                "description": "GST 18%"
+              }
+            ]
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "currency": "INR",
+        "value": 2499.00,
+        "components": [
+          {
+            "type": "UNIT",
+            "value": 2117.80,
+            "currency": "INR",
+            "description": "Subtotal"
+          },
+          {
+            "type": "TAX",
+            "value": 381.20,
+            "currency": "INR",
+            "description": "GST 18%"
+          },
+          {
+            "type": "DISCOUNT",
+            "value": 0.00,
+            "currency": "INR",
+            "description": "No discount"
+          }
+        ]
+      },
+      "beckn:payment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
+        "@type": "beckn:Payment",
+        "beckn:id": "pay-rain-init-00000001",
+        "beckn:amount": {
+          "currency": "INR",
+          "value": 2499.00
+        },
+        "beckn:paymentStatus": "COMPLETED",
+        "beckn:txnRef": "UPI-TXN-2025-021510050122",
+        "beckn:paidAt": "2025-02-15T10:05:00Z",
+        "beckn:beneficiary": "BPP"
+      }
+    }
+  }
+}
+
