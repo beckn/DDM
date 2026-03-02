@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: DatasetItem
+  version: 1.0.0
+  description: Attributes for dataset products exposed via beckn:itemAttributes.
+paths: {}
+components:
+  schemas:
+    DatasetItem:
+      type: object
+      description: Dataset metadata aligned with schema.org Dataset plus Beckn dataset extensions.
+      additionalProperties: true
+      required:
+        - "@context"
+        - "@type"
+        - "schema:identifier"
+        - "schema:name"
+        - "schema:temporalCoverage"
+      properties:
+        "@context":
+          oneOf:
+            - type: string
+              format: uri
+            - type: array
+              items:
+                type: string
+                format: uri
+        "@type":
+          type: string
+          enum: ["DatasetItem"]
+        "schema:identifier":
+          type: string
+        "schema:name":
+          type: string
+        "schema:description":
+          type: string
+        "schema:temporalCoverage":
+          type: string
+        "schema:spatialCoverage":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:license":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:distribution":
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        "schema:variableMeasured":
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: object
+        "schema:measurementTechnique":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:usageInfo":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:conditionsOfAccess":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:temporalResolution":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:spatialResolution":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:creator":
+          oneOf:
+            - type: string
+            - type: object
+        "schema:isBasedOn":
+          oneOf:
+            - type: string
+            - type: object
+        "dataset:refreshType":
+          type: string
+        "dataset:refreshFrequency":
+          type: string
+        "dataset:granularity":
+          type: string
+        "dataset:rowCountEstimate":
+          type: integer
+        "dataset:columnCount":
+          type: integer
+        "dataset:sensitivityLevel":
+          type: string
+        "dataset:verticalRange":
+          oneOf:
+            - type: string
+            - type: object
+        "dataset:dataType":
+          type: string
+        "dataset:rawUpdateFrequency":
+          type: string
+        "dataset:latestRawDataAt":
+          type: string
+          format: date-time
+        "dataset:qualityFlags":
+          type: object
+          additionalProperties: true
+          properties:
+            "dataset:gapFilledPercent":
+              type: number
+            "dataset:outlierRemovedPercent":
+              type: number
+            "dataset:latencyMinutes":
+              type: integer
+            "dataset:uptime99DayPercent":
+              type: number
+            "dataset:validationMethod":
+              type: string
+

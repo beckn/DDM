@@ -1,0 +1,118 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "dataset": "https://beckn.org/schema/dataset#",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "dataset:DatasetItem",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetItem",
+      "rdfs:comment": "A dataset product in a Beckn catalog, extending schema.org Dataset.",
+      "rdfs:subClassOf": {
+        "@id": "schema:Dataset"
+      }
+    },
+    {
+      "@id": "dataset:refreshType",
+      "@type": "rdf:Property",
+      "rdfs:label": "refreshType",
+      "rdfs:comment": "Refresh model for the dataset (STATIC, RECURRING, REAL_TIME)."
+    },
+    {
+      "@id": "dataset:refreshFrequency",
+      "@type": "rdf:Property",
+      "rdfs:label": "refreshFrequency",
+      "rdfs:comment": "Refresh frequency when the dataset is recurring or real-time."
+    },
+    {
+      "@id": "dataset:granularity",
+      "@type": "rdf:Property",
+      "rdfs:label": "granularity",
+      "rdfs:comment": "Observation unit granularity of the dataset (e.g. GRID_DAILY, STATION_HOURLY)."
+    },
+    {
+      "@id": "dataset:rowCountEstimate",
+      "@type": "rdf:Property",
+      "rdfs:label": "rowCountEstimate",
+      "rdfs:comment": "Approximate number of rows in the dataset."
+    },
+    {
+      "@id": "dataset:columnCount",
+      "@type": "rdf:Property",
+      "rdfs:label": "columnCount",
+      "rdfs:comment": "Number of columns in the dataset."
+    },
+    {
+      "@id": "dataset:sensitivityLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": "sensitivityLevel",
+      "rdfs:comment": "Sensitivity classification for the dataset (PUBLIC, INTERNAL, CONFIDENTIAL, etc.)."
+    },
+    {
+      "@id": "dataset:qualityFlags",
+      "@type": "rdf:Property",
+      "rdfs:label": "qualityFlags",
+      "rdfs:comment": "Container for data quality metrics for the dataset."
+    },
+    {
+      "@id": "dataset:gapFilledPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "gapFilledPercent",
+      "rdfs:comment": "Percentage of records gap-filled by imputation."
+    },
+    {
+      "@id": "dataset:outlierRemovedPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "outlierRemovedPercent",
+      "rdfs:comment": "Percentage of records removed as outliers."
+    },
+    {
+      "@id": "dataset:latencyMinutes",
+      "@type": "rdf:Property",
+      "rdfs:label": "latencyMinutes",
+      "rdfs:comment": "Typical latency in minutes between observation and availability."
+    },
+    {
+      "@id": "dataset:uptime99DayPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "uptime99DayPercent",
+      "rdfs:comment": "Feed uptime percentage over the last 99 days."
+    },
+    {
+      "@id": "dataset:validationMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "validationMethod",
+      "rdfs:comment": "Standard or algorithm used for dataset validation."
+    },
+    {
+      "@id": "dataset:verticalRange",
+      "@type": "rdf:Property",
+      "rdfs:label": "verticalRange",
+      "rdfs:comment": "Vertical extent of the dataset (e.g. surface, 0–2km AGL)."
+    },
+    {
+      "@id": "dataset:dataType",
+      "@type": "rdf:Property",
+      "rdfs:label": "dataType",
+      "rdfs:comment": "Type or representation of the data (e.g. GriddedProbabilityField, TimeSeries)."
+    },
+    {
+      "@id": "dataset:rawUpdateFrequency",
+      "@type": "rdf:Property",
+      "rdfs:label": "rawUpdateFrequency",
+      "rdfs:comment": "Frequency at which the underlying raw dataset is updated."
+    },
+    {
+      "@id": "dataset:latestRawDataAt",
+      "@type": "rdf:Property",
+      "rdfs:label": "latestRawDataAt",
+      "rdfs:comment": "Timestamp of the latest raw data available that feeds this dataset."
+    }
+  ]
+}
+

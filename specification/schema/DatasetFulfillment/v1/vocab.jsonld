@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fulfillment": "https://beckn.org/schema/dataset-fulfillment#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "fulfillment:DatasetFulfillment",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetFulfillment",
+      "rdfs:comment": "Access provisioning details for a fulfilled dataset order.",
+      "rdfs:subClassOf": {
+        "@id": "schema:DataDownload"
+      }
+    },
+    {
+      "@id": "fulfillment:accessMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessMethod",
+      "rdfs:comment": "How the dataset is accessed (DOWNLOAD, API, STREAM, DATA_ROOM, SFTP)."
+    },
+    {
+      "@id": "fulfillment:accessUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessUrl",
+      "rdfs:comment": "Signed or time-limited URL for accessing the dataset."
+    },
+    {
+      "@id": "fulfillment:accessStart",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessStart",
+      "rdfs:comment": "Start of the access window (ISO 8601 date-time)."
+    },
+    {
+      "@id": "fulfillment:accessEnd",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessEnd",
+      "rdfs:comment": "End of the access window (ISO 8601 date-time)."
+    },
+    {
+      "@id": "fulfillment:format",
+      "@type": "rdf:Property",
+      "rdfs:label": "format",
+      "rdfs:comment": "File format delivered (e.g. Parquet, CSV, JSON)."
+    },
+    {
+      "@id": "fulfillment:fileSizeBytes",
+      "@type": "rdf:Property",
+      "rdfs:label": "fileSizeBytes",
+      "rdfs:comment": "Approximate size of the delivered file in bytes."
+    },
+    {
+      "@id": "fulfillment:maxDownloads",
+      "@type": "rdf:Property",
+      "rdfs:label": "maxDownloads",
+      "rdfs:comment": "Maximum number of times the dataset can be downloaded."
+    },
+    {
+      "@id": "fulfillment:downloadsUsed",
+      "@type": "rdf:Property",
+      "rdfs:label": "downloadsUsed",
+      "rdfs:comment": "Number of downloads already used by the buyer."
+    },
+    {
+      "@id": "fulfillment:supportEmail",
+      "@type": "rdf:Property",
+      "rdfs:label": "supportEmail",
+      "rdfs:comment": "Support email for issues related to dataset access."
+    },
+    {
+      "@id": "fulfillment:termsUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "termsUrl",
+      "rdfs:comment": "URL to the terms and conditions for dataset use."
+    },
+    {
+      "@id": "fulfillment:attributionText",
+      "@type": "rdf:Property",
+      "rdfs:label": "attributionText",
+      "rdfs:comment": "Required attribution text for the dataset."
+    }
+  ]
+}
+

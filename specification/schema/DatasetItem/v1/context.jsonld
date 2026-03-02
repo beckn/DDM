@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dataset": "./vocab.jsonld#",
+
+    "DatasetItem": "dataset:DatasetItem",
+
+    "refreshType": "dataset:refreshType",
+    "refreshFrequency": "dataset:refreshFrequency",
+    "granularity": "dataset:granularity",
+    "rowCountEstimate": "dataset:rowCountEstimate",
+    "columnCount": "dataset:columnCount",
+    "sensitivityLevel": "dataset:sensitivityLevel",
+
+    "qualityFlags": "dataset:qualityFlags",
+    "gapFilledPercent": "dataset:gapFilledPercent",
+    "outlierRemovedPercent": "dataset:outlierRemovedPercent",
+    "latencyMinutes": "dataset:latencyMinutes",
+    "uptime99DayPercent": "dataset:uptime99DayPercent",
+    "validationMethod": "dataset:validationMethod",
+
+    "verticalRange": "dataset:verticalRange",
+    "dataType": "dataset:dataType",
+    "rawUpdateFrequency": "dataset:rawUpdateFrequency",
+    "latestRawDataAt": "dataset:latestRawDataAt"
+  }
+}
+

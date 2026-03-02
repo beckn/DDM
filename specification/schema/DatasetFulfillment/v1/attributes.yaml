@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: DatasetFulfillment
+  version: 1.0.0
+  description: Access provisioning details for a fulfilled dataset order.
+paths: {}
+components:
+  schemas:
+    DatasetFulfillment:
+      type: object
+      description: Attributes for digital dataset fulfillment attached via beckn:deliveryAttributes.
+      additionalProperties: true
+      required:
+        - "@context"
+        - "@type"
+        - "fulfillment:accessMethod"
+        - "fulfillment:accessUrl"
+        - "fulfillment:accessStart"
+        - "fulfillment:accessEnd"
+      properties:
+        "@context":
+          type: string
+          format: uri
+        "@type":
+          type: string
+          enum: ["beckn:DatasetFulfillment"]
+        "fulfillment:accessMethod":
+          type: string
+          description: Access method code (DOWNLOAD, API, STREAM, DATA_ROOM, SFTP).
+        "fulfillment:accessUrl":
+          type: string
+          format: uri
+        "fulfillment:accessStart":
+          type: string
+          format: date-time
+        "fulfillment:accessEnd":
+          type: string
+          format: date-time
+        "fulfillment:format":
+          type: string
+        "fulfillment:fileSizeBytes":
+          type: integer
+        "fulfillment:maxDownloads":
+          type: integer
+        "fulfillment:downloadsUsed":
+          type: integer
+        "fulfillment:supportEmail":
+          type: string
+          format: email
+        "fulfillment:termsUrl":
+          type: string
+          format: uri
+        "fulfillment:attributionText":
+          type: string
+

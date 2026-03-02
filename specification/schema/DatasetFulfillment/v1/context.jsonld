@@ -1,0 +1,22 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fulfillment": "./vocab.jsonld#",
+
+    "DatasetFulfillment": "fulfillment:DatasetFulfillment",
+
+    "fulfillment:accessMethod": "fulfillment:accessMethod",
+    "fulfillment:accessUrl": "fulfillment:accessUrl",
+    "fulfillment:accessStart": "fulfillment:accessStart",
+    "fulfillment:accessEnd": "fulfillment:accessEnd",
+    "fulfillment:format": "fulfillment:format",
+    "fulfillment:fileSizeBytes": "fulfillment:fileSizeBytes",
+    "fulfillment:maxDownloads": "fulfillment:maxDownloads",
+    "fulfillment:downloadsUsed": "fulfillment:downloadsUsed",
+    "fulfillment:supportEmail": "fulfillment:supportEmail",
+    "fulfillment:termsUrl": "fulfillment:termsUrl",
+    "fulfillment:attributionText": "fulfillment:attributionText"
+  }
+}
+
