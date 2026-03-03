@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "9fccda4f-ed9b-4d94-9869-dec6cf281ba2",
+    "name": "BPP:DDM:rain-probability",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32536226",
+    "_collection_link": "https://go.postman.co/collection/32536226-9fccda4f-ed9b-4d94-9869-dec6cf281ba2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "on_discover",
+      "item": [
+        {
+          "name": "on_discover",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"on_discover\",\n        \"domain\": \"{{domain}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\",\n        \"ttl\": \"PT30S\",\n        \"bpp_id\": \"{{bpp_id}}\",\n        \"bpp_uri\": \"{{bpp_uri}}\"\n    },\n    \"message\": {\n        \"catalog\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Catalog\",\n            \"beckn:id\": \"catalog-climate-rain-001\",\n            \"beckn:descriptor\": {\n                \"@type\": \"beckn:Descriptor\",\n                \"schema:name\": \"ClimateData — Rainwater Probability Datasets\",\n                \"beckn:shortDesc\": \"Historical and forecast rain probability datasets for Indian cities and regions\"\n            },\n            \"beckn:bppId\": \"climate-data.example.com\",\n            \"beckn:bppUri\": \"https://climate-data.example.com/beckn\",\n            \"beckn:items\": [\n                {\n                    \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                    \"@type\": \"beckn:Item\",\n                    \"beckn:id\": \"ds-rainprob-delhi-ncr-march-2025\",\n                    \"beckn:descriptor\": {\n                        \"@type\": \"beckn:Descriptor\",\n                        \"schema:name\": \"Rainwater Probability — Delhi NCR — March 2025\",\n                        \"beckn:shortDesc\": \"Daily probability of rainfall (%) for grid cells covering Delhi NCR for March 2025\",\n                        \"beckn:longDesc\": \"Static dataset providing daily precipitation probability (%) for each 5km x 5km grid cell covering the Delhi-NCR region for the period 2025-03-01 to 2025-03-31. Derived from IMD and model ensemble outputs, suitable for hydrology, agriculture, and urban drainage planning.\"\n                    },\n                    \"beckn:category\": {\n                        \"@type\": \"schema:CategoryCode\",\n                        \"schema:codeValue\": \"environment:weather:rainwater:historical\",\n                        \"schema:name\": \"Environment — Weather — Rainwater Probability (Historical)\"\n                    },\n                    \"beckn:provider\": {\n                        \"beckn:id\": \"climate-data-provider-001\",\n                        \"beckn:descriptor\": {\n                            \"@type\": \"beckn:Descriptor\",\n                            \"schema:name\": \"ClimateData India Pvt. Ltd.\"\n                        }\n                    },\n                    \"beckn:isActive\": true,\n                    \"beckn:rateable\": true,\n                    \"beckn:itemAttributes\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                        \"@type\": \"DatasetItem\",\n                        \"schema:identifier\": \"ds-rainprob-delhi-ncr-march-2025\",\n                        \"schema:name\": \"Rainwater Probability — Delhi NCR — March 2025\",\n                        \"schema:description\": \"Daily precipitation probability (%) per 5km grid cell for Delhi-NCR, March 2025.\",\n                        \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                        \"schema:spatialCoverage\": {\n                            \"@type\": \"schema:Place\",\n                            \"schema:name\": \"Delhi-NCR\",\n                            \"schema:description\": \"Coverage region for the dataset\"\n                        },\n                        \"schema:license\": \"https://creativecommons.org/licenses/by/4.0/\",\n                        \"schema:variableMeasured\": [\n                            \"PrecipitationProbability\"\n                        ],\n                        \"schema:measurementTechnique\": \"Model ensemble based on IMD and global forecast systems\",\n                        \"schema:usageInfo\": \"Intended for hydrology, agriculture planning, urban drainage capacity analysis, and research.\",\n                        \"schema:conditionsOfAccess\": \"Attribution required; no resale of raw data.\",\n                        \"schema:temporalResolution\": \"P1D\",\n                        \"schema:spatialResolution\": {\n                            \"schema:value\": 5,\n                            \"schema:unitText\": \"km\"\n                        },\n                        \"schema:creator\": {\n                            \"@type\": \"schema:Organization\",\n                            \"schema:name\": \"ClimateData India Pvt. Ltd.\",\n                            \"schema:url\": \"https://climate-data.example.com\"\n                        },\n                        \"schema:isBasedOn\": [\n                            \"IMD surface observations\",\n                            \"Global forecast system model outputs\"\n                        ],\n                        \"refreshType\": \"STATIC\",\n                        \"granularity\": \"GRID_DAILY\",\n                        \"rowCountEstimate\": 31000,\n                        \"columnCount\": 5,\n                        \"sensitivityLevel\": \"PUBLIC\",\n                        \"dataType\": \"GriddedProbabilityField\",\n                        \"rawUpdateFrequency\": \"PT1H\",\n                        \"latestRawDataAt\": \"2025-03-31T23:59:59Z\",\n                        \"qualityFlags\": {\n                            \"gapFilledPercent\": 1.2,\n                            \"outlierRemovedPercent\": 0.5,\n                            \"validationMethod\": \"IMD_RAIN_VALIDATION_2025\"\n                        }\n                    }\n                }\n            ],\n            \"beckn:offers\": [\n                {\n                    \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                    \"@type\": \"beckn:Offer\",\n                    \"beckn:id\": \"offer-rainprob-delhi-2025-03-bulk-download\",\n                    \"beckn:descriptor\": {\n                        \"@type\": \"beckn:Descriptor\",\n                        \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Delhi-NCR March 2025\",\n                        \"beckn:shortDesc\": \"Single download of the complete March 2025 rainwater probability dataset in Parquet format, valid for 7 days\"\n                    },\n                    \"beckn:provider\": \"climate-data-provider-001\",\n                    \"beckn:items\": [\n                        \"ds-rainprob-delhi-ncr-march-2025\"\n                    ],\n                    \"beckn:isActive\": true,\n                    \"beckn:validity\": {\n                        \"@type\": \"beckn:TimePeriod\",\n                        \"schema:startDate\": \"2025-02-01T00:00:00Z\",\n                        \"schema:endDate\": \"2026-01-31T23:59:59Z\"\n                    },\n                    \"beckn:price\": {\n                        \"currency\": \"INR\",\n                        \"value\": 2499.00,\n                        \"components\": [\n                            {\n                                \"type\": \"UNIT\",\n                                \"value\": 2117.80,\n                                \"currency\": \"INR\",\n                                \"description\": \"Rainwater Probability Delhi-NCR March 2025 — Parquet export\"\n                            },\n                            {\n                                \"type\": \"TAX\",\n                                \"value\": 381.20,\n                                \"currency\": \"INR\",\n                                \"description\": \"GST 18%\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_discover",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_discover"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_select",
+      "item": [
+        {
+          "name": "on_select",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"version\": \"{{version}}\",\n    \"action\": \"on_select\",\n    \"domain\": \"{{domain}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"message_id\": \"{{$guid}}\",\n    \"transaction_id\": \"{{transaction_id}}\",\n    \"bap_id\": \"{{bap_id}}\",\n    \"bap_uri\": \"{{bap_uri}}\",\n    \"ttl\": \"PT30S\",\n    \"bpp_id\": \"{{bpp_id}}\",\n    \"bpp_uri\": \"{{bpp_uri}}\"\n  },\n  \"message\": {\n    \"order\": {\n      \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n      \"@type\": \"beckn:Order\",\n      \"beckn:orderStatus\": \"CREATED\",\n      \"beckn:seller\": \"climate-data-provider-001\",\n      \"beckn:buyer\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Buyer\",\n        \"beckn:id\": \"buyer-hydrology-lab-001\",\n        \"beckn:displayName\": \"Hydrology Lab, Delhi\"\n      },\n      \"beckn:orderItems\": [\n        {\n          \"beckn:lineId\": \"line-001\",\n          \"beckn:orderedItem\": \"ds-rainprob-delhi-ncr-march-2025\",\n          \"beckn:acceptedOffer\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Offer\",\n            \"beckn:id\": \"offer-rainprob-delhi-2025-03-bulk-download\",\n            \"beckn:descriptor\": {\n              \"@type\": \"beckn:Descriptor\",\n              \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Delhi-NCR March 2025\"\n            },\n            \"beckn:provider\": \"climate-data-provider-001\",\n            \"beckn:items\": [\n              \"ds-rainprob-delhi-ncr-march-2025\"\n            ]\n          },\n          \"beckn:quantity\": {\n            \"unitText\": \"dataset\",\n            \"unitCode\": \"EA\",\n            \"unitQuantity\": 1\n          },\n          \"beckn:price\": {\n            \"currency\": \"INR\",\n            \"value\": 2499.00,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 2117.80,\n                \"currency\": \"INR\",\n                \"description\": \"Rainwater Probability Delhi-NCR March 2025 — Parquet export\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 381.20,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"beckn:orderValue\": {\n        \"currency\": \"INR\",\n        \"value\": 2499.00,\n        \"components\": [\n          {\n            \"type\": \"UNIT\",\n            \"value\": 2117.80,\n            \"currency\": \"INR\",\n            \"description\": \"Subtotal\"\n          },\n          {\n            \"type\": \"TAX\",\n            \"value\": 381.20,\n            \"currency\": \"INR\",\n            \"description\": \"GST 18%\"\n          },\n          {\n            \"type\": \"DISCOUNT\",\n            \"value\": 0.00,\n            \"currency\": \"INR\",\n            \"description\": \"No discount\"\n          }\n        ]\n      }\n    }\n  }\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_select",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_select"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_init",
+      "item": [
+        {
+          "name": "on_init",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"version\": \"{{version}}\",\n    \"action\": \"on_init\",\n    \"domain\": \"{{domain}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"message_id\": \"{{$guid}}\",\n    \"transaction_id\": \"{{transaction_id}}\",\n    \"bap_id\": \"{{bap_id}}\",\n    \"bap_uri\": \"{{bap_uri}}\",\n    \"ttl\": \"PT30S\",\n    \"bpp_id\": \"{{bpp_id}}\",\n    \"bpp_uri\": \"{{bpp_uri}}\"\n  },\n  \"message\": {\n    \"order\": {\n      \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n      \"@type\": \"beckn:Order\",\n      \"beckn:orderStatus\": \"PENDING\",\n      \"beckn:seller\": \"climate-data-provider-001\",\n      \"beckn:buyer\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Buyer\",\n        \"beckn:id\": \"buyer-hydrology-lab-001\",\n        \"beckn:displayName\": \"Hydrology Lab, Delhi\",\n        \"beckn:email\": \"data-team@hydrology.example.in\"\n      },\n      \"beckn:orderItems\": [\n        {\n          \"beckn:lineId\": \"line-001\",\n          \"beckn:orderedItem\": \"ds-rainprob-delhi-ncr-march-2025\",\n          \"beckn:acceptedOffer\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Offer\",\n            \"beckn:id\": \"offer-rainprob-delhi-2025-03-bulk-download\",\n            \"beckn:descriptor\": {\n              \"@type\": \"beckn:Descriptor\",\n              \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Delhi-NCR March 2025\"\n            },\n            \"beckn:provider\": \"climate-data-provider-001\",\n            \"beckn:items\": [\n              \"ds-rainprob-delhi-ncr-march-2025\"\n            ]\n          },\n          \"beckn:quantity\": {\n            \"unitText\": \"dataset\",\n            \"unitCode\": \"EA\",\n            \"unitQuantity\": 1\n          },\n          \"beckn:price\": {\n            \"currency\": \"INR\",\n            \"value\": 2499.00,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 2117.80,\n                \"currency\": \"INR\",\n                \"description\": \"Rainwater Probability Delhi-NCR March 2025 — Parquet export\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 381.20,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"beckn:orderValue\": {\n        \"currency\": \"INR\",\n        \"value\": 2499.00,\n        \"components\": [\n          {\n            \"type\": \"UNIT\",\n            \"value\": 2117.80,\n            \"currency\": \"INR\",\n            \"description\": \"Subtotal\"\n          },\n          {\n            \"type\": \"TAX\",\n            \"value\": 381.20,\n            \"currency\": \"INR\",\n            \"description\": \"GST 18%\"\n          },\n          {\n            \"type\": \"DISCOUNT\",\n            \"value\": 0.00,\n            \"currency\": \"INR\",\n            \"description\": \"No discount\"\n          }\n        ]\n      },\n      \"beckn:payment\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Payment\",\n        \"beckn:id\": \"pay-rain-init-00000001\",\n        \"beckn:paymentStatus\": \"INITIATED\",\n        \"beckn:amount\": {\n          \"currency\": \"INR\",\n          \"value\": 2499.00\n        },\n        \"beckn:paymentURL\": \"https://pay.climate-data.example.com/checkout?ref=pay-rain-init-00000001&amount=2499&currency=INR\",\n        \"beckn:beneficiary\": \"BPP\",\n        \"beckn:acceptedPaymentMethod\": [\n          \"UPI\",\n          \"CREDIT_CARD\",\n          \"BANK_TRANSFER\"\n        ]\n      }\n    }\n  }\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_init",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_init"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_confirm",
+      "item": [
+        {
+          "name": "on_confirm",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"version\": \"{{version}}\",\n    \"action\": \"on_confirm\",\n    \"domain\": \"{{domain}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"message_id\": \"{{$guid}}\",\n    \"transaction_id\": \"{{transaction_id}}\",\n    \"bap_id\": \"{{bap_id}}\",\n    \"bap_uri\": \"{{bap_uri}}\",\n    \"ttl\": \"PT30S\",\n    \"bpp_id\": \"{{bpp_id}}\",\n    \"bpp_uri\": \"{{bpp_uri}}\"\n  },\n  \"message\": {\n    \"order\": {\n      \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n      \"@type\": \"beckn:Order\",\n      \"beckn:id\": \"ord-rain-2025-03-00017\",\n      \"beckn:orderStatus\": \"COMPLETED\",\n      \"beckn:orderNumber\": \"RAIN-ORD-2025-03-00017\",\n      \"beckn:seller\": \"climate-data-provider-001\",\n      \"beckn:buyer\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Buyer\",\n        \"beckn:id\": \"buyer-hydrology-lab-001\",\n        \"beckn:displayName\": \"Hydrology Lab, Delhi\",\n        \"beckn:email\": \"data-team@hydrology.example.in\"\n      },\n      \"beckn:orderItems\": [\n        {\n          \"beckn:lineId\": \"line-001\",\n          \"beckn:orderedItem\": \"ds-rainprob-delhi-ncr-march-2025\",\n          \"beckn:acceptedOffer\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Offer\",\n            \"beckn:id\": \"offer-rainprob-delhi-2025-03-bulk-download\",\n            \"beckn:descriptor\": {\n              \"@type\": \"beckn:Descriptor\",\n              \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Delhi-NCR March 2025\"\n            },\n            \"beckn:provider\": \"climate-data-provider-001\",\n            \"beckn:items\": [\n              \"ds-rainprob-delhi-ncr-march-2025\"\n            ]\n          },\n          \"beckn:quantity\": {\n            \"unitText\": \"dataset\",\n            \"unitCode\": \"EA\",\n            \"unitQuantity\": 1\n          },\n          \"beckn:price\": {\n            \"currency\": \"INR\",\n            \"value\": 2499.00,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 2117.80,\n                \"currency\": \"INR\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 381.20,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"beckn:orderValue\": {\n        \"currency\": \"INR\",\n        \"value\": 2499.00,\n        \"components\": [\n          {\n            \"type\": \"UNIT\",\n            \"value\": 2117.80,\n            \"currency\": \"INR\"\n          },\n          {\n            \"type\": \"TAX\",\n            \"value\": 381.20,\n            \"currency\": \"INR\",\n            \"description\": \"GST 18%\"\n          },\n          {\n            \"type\": \"DISCOUNT\",\n            \"value\": 0.00,\n            \"currency\": \"INR\",\n            \"description\": \"No discount\"\n          }\n        ]\n      },\n      \"beckn:payment\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Payment\",\n        \"beckn:id\": \"pay-rain-cap-00000001\",\n        \"beckn:paymentStatus\": \"CAPTURED\",\n        \"beckn:amount\": {\n          \"currency\": \"INR\",\n          \"value\": 2499.00\n        },\n        \"beckn:txnRef\": \"UPI-TXN-2025-021510050122\",\n        \"beckn:paidAt\": \"2025-02-15T10:05:06Z\",\n        \"beckn:beneficiary\": \"BPP\"\n      },\n      \"beckn:fulfillment\": {\n        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n        \"@type\": \"beckn:Fulfillment\",\n        \"beckn:id\": \"ffl-rain-2025-03-00017\",\n        \"beckn:mode\": \"DIGITAL\",\n        \"beckn:fulfillmentStatus\": \"COMPLETED\",\n        \"beckn:deliveryAttributes\": {\n          \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetFulfillment/v1/context.jsonld\",\n          \"@type\": \"beckn:DatasetFulfillment\",\n          \"fulfillment:accessMethod\": \"DOWNLOAD\",\n          \"fulfillment:accessUrl\": \"https://data.climate-data.example.com/secure/ds-rainprob-delhi-ncr-march-2025.parquet?token=eyJhbGciOiJIUzI1NiJ9.rain-order-2025-03-00017.SIGNATURE\",\n          \"fulfillment:accessStart\": \"2025-02-15T10:05:08Z\",\n          \"fulfillment:accessEnd\": \"2025-02-22T10:05:08Z\",\n          \"fulfillment:format\": \"Parquet\",\n          \"fulfillment:fileSizeBytes\": 104857600,\n          \"fulfillment:maxDownloads\": 5,\n          \"fulfillment:downloadsUsed\": 0,\n          \"fulfillment:supportEmail\": \"datasupport@climate-data.example.com\",\n          \"fulfillment:termsUrl\": \"https://climate-data.example.com/terms/dataset-license\",\n          \"fulfillment:attributionText\": \"Data sourced from ClimateData India Pvt. Ltd. (2025). Rainwater Probability Delhi-NCR March 2025 [Dataset]. https://climate-data.example.com. CC BY 4.0.\"\n        }\n      }\n    }\n  }\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_confirm",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_confirm"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "domain",
+      "value": "beckn:dataset:ddm:1.0.0"
+    },
+    {
+      "key": "version",
+      "value": "2.0.0"
+    },
+    {
+      "key": "bap_id",
+      "value": "ev-charging.sandbox1.com"
+    },
+    {
+      "key": "bap_uri",
+      "value": "http://onix-bap:8081/bap/receiver"
+    },
+    {
+      "key": "bpp_id",
+      "value": "ev-charging.sandbox2.com"
+    },
+    {
+      "key": "bpp_uri",
+      "value": "http://onix-bpp:8082/bpp/receiver"
+    },
+    {
+      "key": "transaction_id",
+      "value": "b2bb2763-8342-4c0b-a32a-2bc6a9dab8f2"
+    },
+    {
+      "key": "bpp_adapter_url",
+      "value": "http://localhost:8082/bpp/caller"
+    }
+  ]
+}
