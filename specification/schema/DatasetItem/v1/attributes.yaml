@@ -82,7 +82,7 @@ components:
         "schema:isBasedOn":
           oneOf:
             - type: string
-            - type: object
+            - type: array
         "dataset:refreshType":
           type: string
         "dataset:refreshFrequency":
