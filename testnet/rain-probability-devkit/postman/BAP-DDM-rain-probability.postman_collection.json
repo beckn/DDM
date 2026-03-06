@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"discover\",\n        \"domain\": \"{{domain}}\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"ttl\": \"PT30S\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"schema_context\": [\n            \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n        ]\n    },\n    \"message\": {\n        \"filters\": {\n            \"type\": \"jsonpath\",\n            \"expression\": \"$[?(@.beckn:itemAttributes.refreshType == 'STATIC' && @.beckn:itemAttributes.granularity == 'GRID_DAILY')]\"\n        }\n    }\n}",
+              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"discover\",\n        \"domain\": \"{{domain}}\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"ttl\": \"PT30S\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"schema_context\": [\n            \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n        ]\n    },\n    \"message\": {\n        \"filters\": {\n            \"type\": \"jsonpath\",\n            \"expression\": \"$.catalogs[*].beckn:items[*] ? (@.'beckn:id' == 'ds-rainprob-delhi-ncr-march-2025')\"\n        }\n    }\n}",
               "options": {
                 "raw": {
                   "language": "json"

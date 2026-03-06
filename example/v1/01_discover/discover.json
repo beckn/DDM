@@ -21,7 +21,7 @@
     "message": {
       "filters": {
         "type": "jsonpath",
-        "expression": "$[?(@.beckn:itemAttributes.refreshType == 'STATIC' && @.beckn:itemAttributes.granularity == 'GRID_DAILY')]"
+        "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:id' == 'ds-rainprob-delhi-ncr-march-2025')"
       }
     }
   }
