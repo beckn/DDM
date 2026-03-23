@@ -19,18 +19,6 @@
     "timestamp": "2025-02-15T10:00:00Z"
   },
   "message": {
-    "intent": {
-      "@type": "beckn:Intent",
-      "beckn:item": {
-        "@type": "beckn:Item",
-        "beckn:category": {
-          "@type": "schema:CategoryCode",
-          "schema:codeValue": "environment:weather:rainwater:historical",
-          "schema:name": "Environment ",
-          "beckn:shortDesc": "Environment — Weather — Rainwater Probability (Historical)"
-        }
-      }
-    },
     "filters": {
       "type": "jsonpath",
       "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:category'.'schema:codeValue' == 'environment:weather:rainwater:historical')"
