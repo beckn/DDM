@@ -31,7 +31,7 @@
       "beckn:orderItems": [
         {
           "beckn:lineId": "line-001",
-          "beckn:orderedItem": "ds-rainprob-delhi-ncr-march-2025",
+          "beckn:orderedItem": "ds-rainprob-maharashtra-march-2025",
           "beckn:quantity": {
             "unitText": "dataset",
             "unitCode": "EA",
@@ -39,37 +39,53 @@
           },
           "beckn:price": {
             "currency": "INR",
-            "value": 2499.00,
+            "value": 4999.00,
             "components": [
               {
                 "type": "UNIT",
-                "value": 2117.80,
+                "value": 4236.44,
                 "currency": "INR",
-                "description": "Rainwater Probability Delhi-NCR March 2025 — Parquet export"
+                "description": "Rainwater Probability Maharashtra March 2025 — Parquet export"
               },
               {
                 "type": "TAX",
-                "value": 381.20,
+                "value": 762.56,
                 "currency": "INR",
                 "description": "GST 18%"
               }
             ]
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+            "@type": "DatasetItem",
+            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+            "schema:spatialCoverage": {
+              "@type": "schema:Place",
+              "schema:name": "Amravati, Maharashtra (user GPS)",
+              "schema:geo": {
+                "@type": "schema:GeoCoordinates",
+                "schema:latitude": 20.9374,
+                "schema:longitude": 77.7796
+              }
+            },
+            "dataset:locationOfInterestType": "POINT"
           }
         }
       ],
       "beckn:orderValue": {
         "currency": "INR",
-        "value": 2499.00,
+        "value": 4999.00,
         "components": [
           {
             "type": "UNIT",
-            "value": 2117.80,
+            "value": 4236.44,
             "currency": "INR",
             "description": "Subtotal"
           },
           {
             "type": "TAX",
-            "value": 381.20,
+            "value": 762.56,
             "currency": "INR",
             "description": "GST 18%"
           },
@@ -87,7 +103,7 @@
         "beckn:id": "pay-rain-init-00000001",
         "beckn:amount": {
           "currency": "INR",
-          "value": 2499.00
+          "value": 4999.00
         },
         "beckn:paymentStatus": "COMPLETED",
         "beckn:txnRef": "UPI-TXN-2025-021510050122",

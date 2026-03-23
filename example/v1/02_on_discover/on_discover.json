@@ -59,7 +59,11 @@
             "schema:spatialCoverage": {
               "@type": "schema:Place",
               "schema:name": "Delhi-NCR",
-              "schema:description": "Coverage region for the dataset"
+              "schema:description": "Coverage region for the dataset (5km x 5km gridded field)",
+              "schema:geo": {
+                "@type": "schema:GeoShape",
+                "schema:box": "28.10 76.70 29.00 77.70"
+              }
             },
             "schema:license": "https://creativecommons.org/licenses/by/4.0/",
             "schema:variableMeasured": [
@@ -93,6 +97,82 @@
             "qualityFlags": {
               "gapFilledPercent": 1.2,
               "outlierRemovedPercent": 0.5,
+              "validationMethod": "IMD_RAIN_VALIDATION_2025"
+            }
+          }
+        },
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
+          "@type": "beckn:Item",
+          "beckn:id": "ds-rainprob-maharashtra-march-2025",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Rainwater Probability — Maharashtra — March 2025",
+            "beckn:shortDesc": "Daily probability of rainfall (%) for grid cells covering Maharashtra for March 2025",
+            "beckn:longDesc": "Static dataset providing daily precipitation probability (%) for each 5km x 5km grid cell covering the state of Maharashtra for the period 2025-03-01 to 2025-03-31. Derived from IMD and model ensemble outputs, suitable for hydrology, agriculture, reservoir operations, and state-wide planning."
+          },
+          "beckn:category": {
+            "@type": "schema:CategoryCode",
+            "schema:codeValue": "environment:weather:rainwater:historical",
+            "schema:name": "Environment — Weather — Rainwater Probability (Historical)"
+          },
+          "beckn:provider": {
+            "beckn:id": "climate-data-provider-001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "ClimateData India Pvt. Ltd."
+            }
+          },
+          "beckn:isActive": true,
+          "beckn:rateable": true,
+          "beckn:itemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+            "@type": "DatasetItem",
+            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+            "schema:name": "Rainwater Probability — Maharashtra — March 2025",
+            "schema:description": "Daily precipitation probability (%) per 5km grid cell for Maharashtra, March 2025.",
+            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+            "schema:spatialCoverage": {
+              "@type": "schema:Place",
+              "schema:name": "Maharashtra",
+              "schema:description": "Coverage region for the dataset (5km x 5km gridded field over Maharashtra)",
+              "schema:geo": {
+                "@type": "schema:GeoShape",
+                "schema:box": "15.60 72.60 22.00 80.90"
+              }
+            },
+            "schema:license": "https://creativecommons.org/licenses/by/4.0/",
+            "schema:variableMeasured": [
+              "PrecipitationProbability"
+            ],
+            "schema:measurementTechnique": "Model ensemble based on IMD and global forecast systems",
+            "schema:usageInfo": "Intended for hydrology, agriculture planning, reservoir operations, and state-wide planning.",
+            "schema:conditionsOfAccess": "Attribution required; no resale of raw data.",
+            "schema:temporalResolution": "P1D",
+            "schema:spatialResolution": {
+              "schema:value": 5,
+              "schema:unitText": "km"
+            },
+            "schema:creator": {
+              "@type": "schema:Organization",
+              "schema:name": "ClimateData India Pvt. Ltd.",
+              "schema:url": "https://climate-data.example.com"
+            },
+            "schema:isBasedOn": [
+              "IMD surface observations",
+              "Global forecast system model outputs"
+            ],
+            "refreshType": "STATIC",
+            "granularity": "GRID_DAILY",
+            "rowCountEstimate": 250000,
+            "columnCount": 5,
+            "sensitivityLevel": "PUBLIC",
+            "dataType": "GriddedProbabilityField",
+            "rawUpdateFrequency": "PT1H",
+            "latestRawDataAt": "2025-03-31T23:59:59Z",
+            "qualityFlags": {
+              "gapFilledPercent": 1.5,
+              "outlierRemovedPercent": 0.7,
               "validationMethod": "IMD_RAIN_VALIDATION_2025"
             }
           }
@@ -131,6 +211,44 @@
               {
                 "type": "TAX",
                 "value": 381.20,
+                "currency": "INR",
+                "description": "GST 18%"
+              }
+            ]
+          }
+        },
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
+          "@type": "beckn:Offer",
+          "beckn:id": "offer-rainprob-maharashtra-2025-03-bulk-download",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "One-Time Bulk Download — Rainwater Probability Maharashtra March 2025",
+            "beckn:shortDesc": "Single download of the complete March 2025 Maharashtra rainwater probability dataset in Parquet format, valid for 7 days"
+          },
+          "beckn:provider": "climate-data-provider-001",
+          "beckn:items": [
+            "ds-rainprob-maharashtra-march-2025"
+          ],
+          "beckn:isActive": true,
+          "beckn:validity": {
+            "@type": "beckn:TimePeriod",
+            "schema:startDate": "2025-02-01T00:00:00Z",
+            "schema:endDate": "2026-01-31T23:59:59Z"
+          },
+          "beckn:price": {
+            "currency": "INR",
+            "value": 4999.00,
+            "components": [
+              {
+                "type": "UNIT",
+                "value": 4236.44,
+                "currency": "INR",
+                "description": "Rainwater Probability Maharashtra March 2025 — Parquet export"
+              },
+              {
+                "type": "TAX",
+                "value": 762.56,
                 "currency": "INR",
                 "description": "GST 18%"
               }
