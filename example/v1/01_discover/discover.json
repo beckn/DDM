@@ -21,7 +21,7 @@
   "message": {
     "filters": {
       "type": "jsonpath",
-      "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:category'.'schema:codeValue' == 'environment:weather:rainwater:historical')"
+      "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:isActive' == true)"
     }
   }
 }
