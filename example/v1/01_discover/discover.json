@@ -1,27 +1,39 @@
 {
-    "context": {
-      "domain": "beckn:dataset:ddm:1.0.0",
-      "action": "discover",
-      "version": "2.0.0",
-      "country": "IND",
-      "city": "std:DEL",
-      "bap_id": "ev-charging.sandbox1.com",
-      "bap_uri": "https://ev-charging.sandbox1.com",
-      "network_id": [
-        "beckn:dataset:ddm:1.0.0"
-      ],
-      "schema_context": [
-        "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
-      ],
-      "transaction_id": "txn-rain-2025-03-0001",
-      "message_id": "msg-rain-00000001",
-      "ttl": "PT10M",
-      "timestamp": "2025-02-15T10:00:00Z"
-    },
-    "message": {
-      "filters": {
-        "type": "jsonpath",
-        "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:id' == 'ds-rainprob-delhi-ncr-march-2025')"
+  "context": {
+    "domain": "beckn:dataset:ddm:1.0.0",
+    "action": "discover",
+    "version": "2.0.0",
+    "country": "IND",
+    "city": "std:DEL",
+    "bap_id": "ev-charging.sandbox1.com",
+    "bap_uri": "https://ev-charging.sandbox1.com",
+    "network_id": [
+      "beckn:dataset:ddm:1.0.0"
+    ],
+    "schema_context": [
+      "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
+    ],
+    "transaction_id": "txn-rain-2025-03-0001",
+    "message_id": "msg-rain-00000001",
+    "ttl": "PT10M",
+    "timestamp": "2025-02-15T10:00:00Z"
+  },
+  "message": {
+    "intent": {
+      "@type": "beckn:Intent",
+      "beckn:item": {
+        "@type": "beckn:Item",
+        "beckn:category": {
+          "@type": "schema:CategoryCode",
+          "schema:codeValue": "environment:weather:rainwater:historical",
+          "schema:name": "Environment ",
+          "beckn:shortDesc": "Environment — Weather — Rainwater Probability (Historical)"
+        }
       }
+    },
+    "filters": {
+      "type": "jsonpath",
+      "expression": "$.catalogs[*].beckn:items[*] ? (@.'beckn:category'.'schema:codeValue' == 'environment:weather:rainwater:historical')"
     }
   }
+}

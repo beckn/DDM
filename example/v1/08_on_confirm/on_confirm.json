@@ -30,18 +30,18 @@
       "beckn:orderItems": [
         {
           "beckn:lineId": "line-001",
-          "beckn:orderedItem": "ds-rainprob-delhi-ncr-march-2025",
+          "beckn:orderedItem": "ds-rainprob-maharashtra-march-2025",
           "beckn:acceptedOffer": {
             "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld",
             "@type": "beckn:Offer",
-            "beckn:id": "offer-rainprob-delhi-2025-03-bulk-download",
+            "beckn:id": "offer-rainprob-maharashtra-2025-03-bulk-download",
             "beckn:descriptor": {
               "@type": "beckn:Descriptor",
-              "schema:name": "One-Time Bulk Download — Rainwater Probability Delhi-NCR March 2025"
+              "schema:name": "One-Time Bulk Download — Rainwater Probability Maharashtra March 2025"
             },
             "beckn:provider": "climate-data-provider-001",
             "beckn:items": [
-              "ds-rainprob-delhi-ncr-march-2025"
+              "ds-rainprob-maharashtra-march-2025"
             ]
           },
           "beckn:quantity": {
@@ -51,35 +51,51 @@
           },
           "beckn:price": {
             "currency": "INR",
-            "value": 2499.00,
+            "value": 4999.00,
             "components": [
               {
                 "type": "UNIT",
-                "value": 2117.80,
+                "value": 4236.44,
                 "currency": "INR"
               },
               {
                 "type": "TAX",
-                "value": 381.20,
+                "value": 762.56,
                 "currency": "INR",
                 "description": "GST 18%"
               }
             ]
+          },
+          "beckn:orderItemAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+            "@type": "DatasetItem",
+            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+            "schema:spatialCoverage": {
+              "@type": "schema:Place",
+              "schema:name": "Amravati, Maharashtra (user GPS)",
+              "schema:geo": {
+                "@type": "schema:GeoCoordinates",
+                "schema:latitude": 20.9374,
+                "schema:longitude": 77.7796
+              }
+            },
+            "dataset:locationOfInterestType": "POINT"
           }
         }
       ],
       "beckn:orderValue": {
         "currency": "INR",
-        "value": 2499.00,
+        "value": 4999.00,
         "components": [
           {
             "type": "UNIT",
-            "value": 2117.80,
+            "value": 4236.44,
             "currency": "INR"
           },
           {
             "type": "TAX",
-            "value": 381.20,
+            "value": 762.56,
             "currency": "INR",
             "description": "GST 18%"
           },
@@ -98,7 +114,7 @@
         "beckn:paymentStatus": "CAPTURED",
         "beckn:amount": {
           "currency": "INR",
-          "value": 2499.00
+          "value": 4999.00
         },
         "beckn:txnRef": "UPI-TXN-2025-021510050122",
         "beckn:paidAt": "2025-02-15T10:05:06Z",
@@ -114,7 +130,7 @@
           "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetFulfillment/v1/context.jsonld",
           "@type": "beckn:DatasetFulfillment",
           "fulfillment:accessMethod": "DOWNLOAD",
-          "fulfillment:accessUrl": "https://data.climate-data.example.com/secure/ds-rainprob-delhi-ncr-march-2025.parquet?token=eyJhbGciOiJIUzI1NiJ9.rain-order-2025-03-00017.SIGNATURE",
+          "fulfillment:accessUrl": "https://data.climate-data.example.com/secure/ds-rainprob-maharashtra-march-2025.parquet?token=eyJhbGciOiJIUzI1NiJ9.rain-order-2025-03-00017.SIGNATURE",
           "fulfillment:accessStart": "2025-02-15T10:05:08Z",
           "fulfillment:accessEnd": "2025-02-22T10:05:08Z",
           "fulfillment:format": "Parquet",
@@ -123,7 +139,7 @@
           "fulfillment:downloadsUsed": 0,
           "fulfillment:supportEmail": "datasupport@climate-data.example.com",
           "fulfillment:termsUrl": "https://climate-data.example.com/terms/dataset-license",
-          "fulfillment:attributionText": "Data sourced from ClimateData India Pvt. Ltd. (2025). Rainwater Probability Delhi-NCR March 2025 [Dataset]. https://climate-data.example.com. CC BY 4.0."
+          "fulfillment:attributionText": "Data sourced from ClimateData India Pvt. Ltd. (2025). Rainwater Probability Maharashtra March 2025 [Dataset]. https://climate-data.example.com. CC BY 4.0."
         }
       }
     }
