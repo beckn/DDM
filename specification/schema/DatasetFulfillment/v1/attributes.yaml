@@ -11,8 +11,6 @@ components:
       description: Attributes for digital dataset fulfillment attached via beckn:deliveryAttributes.
       additionalProperties: true
       required:
-        - "@context"
-        - "@type"
         - "fulfillment:accessMethod"
         - "fulfillment:accessUrl"
         - "fulfillment:accessStart"

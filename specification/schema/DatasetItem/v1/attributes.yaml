@@ -11,8 +11,6 @@ components:
       description: Dataset metadata aligned with schema.org Dataset plus Beckn dataset extensions.
       additionalProperties: true
       required:
-        - "@context"
-        - "@type"
         - "schema:identifier"
         - "schema:name"
         - "schema:temporalCoverage"
