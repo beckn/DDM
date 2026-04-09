@@ -12,5 +12,5 @@ routingRules:
       - track
       - cancel
       - update
-      - rating
+      - rate
       - support

@@ -4,8 +4,8 @@ log:
   destinations:
     - type: stdout
   contextKeys:
-    - transaction_id
-    - message_id
+    - transactionId
+    - messageId
     - subscriber_id
     - module_id
 http:
@@ -47,7 +47,7 @@ modules:
           id: schemav2validator
           config:
             type: url
-            location: https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/api/beckn.yaml
+            location: https://raw.githubusercontent.com/beckn/protocol-specifications-v2/refs/heads/main/api/v2.0.0/beckn.yaml
             cacheTTL: "3600"
         cache:
           id: cache
@@ -94,7 +94,7 @@ modules:
           id: schemav2validator
           config:
             type: url
-            location: https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/api/beckn.yaml
+            location: https://raw.githubusercontent.com/beckn/protocol-specifications-v2/refs/heads/main/api/v2.0.0/beckn.yaml
             cacheTTL: "3600"
         cache:
           id: cache
@@ -109,7 +109,7 @@ modules:
         middleware:
           - id: reqpreprocessor
             config:
-              uuidKeys: transaction_id,message_id
+              uuidKeys: transactionId,messageId
               role: bpp          
       steps:
         - addRoute
