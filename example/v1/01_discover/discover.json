@@ -1,6 +1,6 @@
 {
   "context": {
-    "domain": "beckn:dataset:ddm:1.0.0",
+    "networkId": "beckn:dataset:ddm:1.0.0",
     "action": "discover",
     "version": "2.0.0",
     "location": {
@@ -13,7 +13,6 @@
     },
     "bapId": "ev-charging.sandbox1.com",
     "bapUri": "https://ev-charging.sandbox1.com",
-    "networkId": "beckn:dataset:ddm:1.0.0",
     "schemaContext": [
       "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
     ],

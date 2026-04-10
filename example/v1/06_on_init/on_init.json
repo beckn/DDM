@@ -1,6 +1,6 @@
 {
   "context": {
-    "domain": "beckn:dataset:ddm:1.0.0",
+    "networkId": "beckn:dataset:ddm:1.0.0",
     "action": "on_init",
     "version": "2.0.0",
     "bapId": "ev-charging.sandbox1.com",
@@ -50,25 +50,25 @@
                         },
                         "resourceIds": [
                             "ds-rainprob-maharashtra-march-2025"
-                        ]
-                    },
-                    "commitmentAttributes": {
-                        "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
-                        "@type": "DatasetItem",
-                        "schema:identifier": "ds-rainprob-maharashtra-march-2025",
-                        "schema:name": "Rainwater Probability Maharashtra March 2025",
-                        "schema:description": "Historical and forecasted rainwater probability data",
-                        "schema:temporalCoverage": "2025-03-01/2025-03-31",
-                        "schema:spatialCoverage": {
-                            "@type": "schema:Place",
-                            "schema:name": "Amravati, Maharashtra (user GPS)",
-                            "schema:geo": {
-                                "@type": "schema:GeoCoordinates",
-                                "schema:latitude": 20.9374,
-                                "schema:longitude": 77.7796
-                            }
-                        },
-                        "dataset:locationOfInterestType": "POINT"
+                        ],
+                        "offerAttributes": {
+                            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+                            "@type": "DatasetItem",
+                            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+                            "schema:name": "Rainwater Probability Maharashtra March 2025",
+                            "schema:description": "Historical and forecasted rainwater probability data",
+                            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+                            "schema:spatialCoverage": {
+                                "@type": "schema:Place",
+                                "schema:name": "Amravati, Maharashtra (user GPS)",
+                                "schema:geo": {
+                                    "@type": "schema:GeoCoordinates",
+                                    "schema:latitude": 20.9374,
+                                    "schema:longitude": 77.7796
+                                }
+                            },
+                            "dataset:locationOfInterestType": "POINT"
+                        }
                     }
                 }
             ],
@@ -79,7 +79,7 @@
                         "code": "ACTIVE"
                     },
                     "considerationAttributes": {
-                        "@context": "https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld",
+                        "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
                         "@type": "PriceSpecification",
                         "currency": "INR",
                         "value": 4999.00,
@@ -106,7 +106,7 @@
                         "name": "Climate Data Provider"
                     },
                     "participantAttributes": {
-                        "@context": "https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld",
+                        "@context": "https://schema.beckn.io/Organization/v2.0/context.jsonld",
                         "@type": "Organization",
                         "id": "climate-data-provider-001",
                         "name": "Climate Data Provider",
@@ -121,7 +121,7 @@
                         "name": "Hydrology Lab, Delhi"
                     },
                     "participantAttributes": {
-                        "@context": "https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld",
+                        "@context": "https://schema.beckn.io/Organization/v2.0/context.jsonld",
                         "@type": "Organization",
                         "id": "buyer-hydrology-lab-001",
                         "name": "Hydrology Lab, Delhi",
@@ -133,9 +133,7 @@
                         }
                     }
                 }
-            ],
-            "performance": [],
-            "settlements": []
+            ]
         }
     }
 }
