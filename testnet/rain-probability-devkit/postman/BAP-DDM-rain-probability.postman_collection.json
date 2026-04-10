@@ -1,198 +1,197 @@
 {
-  "info": {
-    "_postman_id": "e927642e-b559-4b64-b8e4-272315c0e12b",
-    "name": "BAP:DDM:rain-probability",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "32536226",
-    "_collection_link": "https://go.postman.co/collection/32536226-e927642e-b559-4b64-b8e4-272315c0e12b?source=collection_link"
-  },
-  "item": [
-    {
-      "name": "discover",
-      "item": [
-        {
-          "name": "discover",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"discover\",\n        \"domain\": \"{{domain}}\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"ttl\": \"PT30S\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"schema_context\": [\n            \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n        ]\n    },\n    \"message\": {\n        \"filters\": {\n            \"type\": \"jsonpath\",\n            \"expression\": \"$.catalogs[*].beckn:items[*] ? (@.'beckn:isActive' == true)\"\n        }\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{bap_adapter_url}}/discover",
-              "host": [
-                "{{bap_adapter_url}}"
-              ],
-              "path": [
-                "discover"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "select",
-      "item": [
-        {
-          "name": "select",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"select\",\n        \"domain\": \"{{domain}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\",\n        \"bpp_id\": \"{{bpp_id}}\",\n        \"bpp_uri\": \"{{bpp_uri}}\",\n        \"ttl\": \"PT30S\"\n    },\n    \"message\": {\n        \"order\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Order\",\n            \"beckn:orderStatus\": \"CREATED\",\n            \"beckn:seller\": \"climate-data-provider-001\",\n            \"beckn:buyer\": {\n                \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                \"@type\": \"beckn:Buyer\",\n                \"beckn:id\": \"buyer-hydrology-lab-001\",\n                \"beckn:role\": \"BUYER\",\n                \"beckn:displayName\": \"Hydrology Lab, Delhi\"\n            },\n            \"beckn:orderItems\": [\n                {\n                    \"beckn:lineId\": \"line-001\",\n                    \"beckn:orderedItem\": \"ds-rainprob-maharashtra-march-2025\",\n                    \"beckn:acceptedOffer\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                        \"@type\": \"beckn:Offer\",\n                        \"beckn:id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n                        \"beckn:descriptor\": {\n                            \"@type\": \"beckn:Descriptor\",\n                            \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Maharashtra March 2025\"\n                        },\n                        \"beckn:provider\": \"climate-data-provider-001\",\n                        \"beckn:items\": [\n                            \"ds-rainprob-maharashtra-march-2025\"\n                        ]\n                    },\n                    \"beckn:quantity\": {\n                        \"unitText\": \"dataset\",\n                        \"unitCode\": \"EA\",\n                        \"unitQuantity\": 1\n                    },\n                    \"beckn:orderItemAttributes\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                        \"@type\": \"DatasetItem\",\n                        \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                        \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                        \"schema:spatialCoverage\": {\n                            \"@type\": \"schema:Place\",\n                            \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                            \"schema:geo\": {\n                                \"@type\": \"schema:GeoCoordinates\",\n                                \"schema:latitude\": 20.9374,\n                                \"schema:longitude\": 77.7796\n                            }\n                        },\n                        \"dataset:locationOfInterestType\": \"POINT\"\n                    }\n                }\n            ]\n        }\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{bap_adapter_url}}/select",
-              "host": [
-                "{{bap_adapter_url}}"
-              ],
-              "path": [
-                "select"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "init",
-      "item": [
-        {
-          "name": "init",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"init\",\n        \"domain\": \"{{domain}}\",\n        \"bpp_id\": \"{{bpp_id}}\",\n        \"bpp_uri\": \"{{bpp_uri}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"ttl\": \"PT30S\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\"\n    },\n    \"message\": {\n        \"order\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Order\",\n            \"beckn:orderStatus\": \"PENDING\",\n            \"beckn:seller\": \"climate-data-provider-001\",\n            \"beckn:buyer\": {\n                \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                \"@type\": \"beckn:Buyer\",\n                \"beckn:id\": \"buyer-hydrology-lab-001\",\n                \"beckn:role\": \"BUYER\",\n                \"beckn:displayName\": \"Hydrology Lab, Delhi\",\n                \"beckn:email\": \"data-team@hydrology.example.in\",\n                \"beckn:telephone\": \"+91-11-4000-1234\",\n                \"beckn:taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n            },\n            \"beckn:orderItems\": [\n                {\n                    \"beckn:lineId\": \"line-001\",\n                    \"beckn:orderedItem\": \"ds-rainprob-maharashtra-march-2025\",\n                    \"beckn:acceptedOffer\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                        \"@type\": \"beckn:Offer\",\n                        \"beckn:id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n                        \"beckn:descriptor\": {\n                            \"@type\": \"beckn:Descriptor\",\n                            \"schema:name\": \"One-Time Bulk Download — Rainwater Probability Maharashtra March 2025\"\n                        },\n                        \"beckn:provider\": \"climate-data-provider-001\",\n                        \"beckn:items\": [\n                            \"ds-rainprob-maharashtra-march-2025\"\n                        ]\n                    },\n                    \"beckn:quantity\": {\n                        \"unitText\": \"dataset\",\n                        \"unitCode\": \"EA\",\n                        \"unitQuantity\": 1\n                    },\n                    \"beckn:orderItemAttributes\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                        \"@type\": \"DatasetItem\",\n                        \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                        \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                        \"schema:spatialCoverage\": {\n                            \"@type\": \"schema:Place\",\n                            \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                            \"schema:geo\": {\n                                \"@type\": \"schema:GeoCoordinates\",\n                                \"schema:latitude\": 20.9374,\n                                \"schema:longitude\": 77.7796\n                            }\n                        },\n                        \"dataset:locationOfInterestType\": \"POINT\"\n                    }\n                }\n            ],\n            \"beckn:orderValue\": {\n                \"currency\": \"INR\",\n                \"value\": 4999.00,\n                \"components\": [\n                    {\n                        \"type\": \"UNIT\",\n                        \"value\": 4236.44,\n                        \"currency\": \"INR\"\n                    },\n                    {\n                        \"type\": \"TAX\",\n                        \"value\": 762.56,\n                        \"currency\": \"INR\",\n                        \"description\": \"GST 18%\"\n                    }\n                ]\n            }\n        }\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{bap_adapter_url}}/init",
-              "host": [
-                "{{bap_adapter_url}}"
-              ],
-              "path": [
-                "init"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "confirm",
-      "item": [
-        {
-          "name": "confirm",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"context\": {\n        \"version\": \"{{version}}\",\n        \"action\": \"confirm\",\n        \"domain\": \"{{domain}}\",\n        \"bpp_id\": \"{{bpp_id}}\",\n        \"bpp_uri\": \"{{bpp_uri}}\",\n        \"transaction_id\": \"{{transaction_id}}\",\n        \"message_id\": \"{{$guid}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"ttl\": \"PT30S\",\n        \"bap_id\": \"{{bap_id}}\",\n        \"bap_uri\": \"{{bap_uri}}\"\n    },\n    \"message\": {\n        \"order\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n            \"@type\": \"beckn:Order\",\n            \"beckn:orderStatus\": \"PENDING\",\n            \"beckn:seller\": \"climate-data-provider-001\",\n            \"beckn:buyer\": {\n                \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                \"@type\": \"beckn:Buyer\",\n                \"beckn:id\": \"buyer-hydrology-lab-001\",\n                \"beckn:role\": \"BUYER\",\n                \"beckn:displayName\": \"Hydrology Lab, Delhi\",\n                \"beckn:telephone\": \"+91-11-4000-1234\",\n                \"beckn:email\": \"data-team@hydrology.example.in\",\n                \"beckn:taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n            },\n            \"beckn:orderItems\": [\n                {\n                    \"beckn:lineId\": \"line-001\",\n                    \"beckn:orderedItem\": \"ds-rainprob-maharashtra-march-2025\",\n                    \"beckn:quantity\": {\n                        \"unitText\": \"dataset\",\n                        \"unitCode\": \"EA\",\n                        \"unitQuantity\": 1\n                    },\n                    \"beckn:price\": {\n                        \"currency\": \"INR\",\n                        \"value\": 4999.00,\n                        \"components\": [\n                            {\n                                \"type\": \"UNIT\",\n                                \"value\": 4236.44,\n                                \"currency\": \"INR\",\n                                \"description\": \"Rainwater Probability Maharashtra March 2025 — Parquet export\"\n                            },\n                            {\n                                \"type\": \"TAX\",\n                                \"value\": 762.56,\n                                \"currency\": \"INR\",\n                                \"description\": \"GST 18%\"\n                            }\n                        ]\n                    },\n                    \"beckn:orderItemAttributes\": {\n                        \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                        \"@type\": \"DatasetItem\",\n                        \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                        \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                        \"schema:spatialCoverage\": {\n                            \"@type\": \"schema:Place\",\n                            \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                            \"schema:geo\": {\n                                \"@type\": \"schema:GeoCoordinates\",\n                                \"schema:latitude\": 20.9374,\n                                \"schema:longitude\": 77.7796\n                            }\n                        },\n                        \"dataset:locationOfInterestType\": \"POINT\"\n                    }\n                }\n            ],\n            \"beckn:orderValue\": {\n                \"currency\": \"INR\",\n                \"value\": 4999.00,\n                \"components\": [\n                    {\n                        \"type\": \"UNIT\",\n                        \"value\": 4236.44,\n                        \"currency\": \"INR\",\n                        \"description\": \"Subtotal\"\n                    },\n                    {\n                        \"type\": \"TAX\",\n                        \"value\": 762.56,\n                        \"currency\": \"INR\",\n                        \"description\": \"GST 18%\"\n                    },\n                    {\n                        \"type\": \"DISCOUNT\",\n                        \"value\": 0.00,\n                        \"currency\": \"INR\",\n                        \"description\": \"No discount\"\n                    }\n                ]\n            },\n            \"beckn:payment\": {\n                \"@context\": \"https://raw.githubusercontent.com/beckn/protocol-specifications-v2/core-v2.0.0-rc/schema/core/v2/context.jsonld\",\n                \"@type\": \"beckn:Payment\",\n                \"beckn:id\": \"pay-rain-init-00000001\",\n                \"beckn:amount\": {\n                    \"currency\": \"INR\",\n                    \"value\": 4999.00\n                },\n                \"beckn:paymentStatus\": \"COMPLETED\",\n                \"beckn:txnRef\": \"UPI-TXN-2025-021510050122\",\n                \"beckn:paidAt\": \"2025-02-15T10:05:00Z\",\n                \"beckn:beneficiary\": \"BPP\"\n            }\n        }\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{bap_adapter_url}}/confirm",
-              "host": [
-                "{{bap_adapter_url}}"
-              ],
-              "path": [
-                "confirm"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ],
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "requests": {},
-        "exec": [
-          ""
-        ]
-      }
-    }
-  ],
-  "variable": [
-    {
-      "key": "domain",
-      "value": "beckn:dataset:ddm:1.0.0"
-    },
-    {
-      "key": "version",
-      "value": "2.0.0"
-    },
-    {
-      "key": "bap_id",
-      "value": "ev-charging.sandbox1.com"
-    },
-    {
-      "key": "bap_uri",
-      "value": "http://onix-bap:8081/bap/receiver"
-    },
-    {
-      "key": "bpp_id",
-      "value": "ev-charging.sandbox2.com"
-    },
-    {
-      "key": "bpp_uri",
-      "value": "http://onix-bpp:8082/bpp/receiver"
-    },
-    {
-      "key": "transaction_id",
-      "value": "b2bb2763-8342-4c0b-a32a-2bc6a9dab8f2"
-    },
-    {
-      "key": "bap_adapter_url",
-      "value": "http://localhost:8081/bap/caller"
-    }
-  ]
+	"info": {
+		"_postman_id": "5fe417f6-3c97-47e3-a6fa-5f6c95f7b867",
+		"name": "BAP:DDM:rain-probability",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49679286"
+	},
+	"item": [
+		{
+			"name": "discover",
+			"item": [
+				{
+					"name": "discover",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"action\": \"discover\",\n    \"version\": \"{{version}}\",\n    \"location\": {\n      \"country\": {\n        \"code\": \"IND\"\n      },\n      \"city\": {\n        \"code\": \"std:DEL\"\n      }\n    },\n    \"bapId\": \"{{bapId}}\",\n    \"bapUri\": \"{{bapUri}}\",\n    \"networkId\": \"{{domain}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ],\n    \"transactionId\": \"{{transactionId}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"ttl\": \"PT10M\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"message\": {\n    \"intent\": {\n      \"filters\": {\n        \"type\": \"jsonpath\",\n        \"expression\": \"$.catalogs[*].resources[*] ? (@.isActive == true)\"\n      }\n    }\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bap_adapter_url}}/discover",
+							"host": [
+								"{{bap_adapter_url}}"
+							],
+							"path": [
+								"discover"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "select",
+			"item": [
+				{
+					"name": "select",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"context\": {\n        \"networkId\": \"{{domain}}\",\n        \"action\": \"select\",\n        \"version\": \"{{version}}\",\n        \"bapId\": \"{{bapId}}\",\n        \"bapUri\": \"{{bapUri}}\",\n        \"bppId\": \"{{bppId}}\",\n        \"bppUri\": \"{{bppUri}}\",\n        \"transactionId\": \"{{transactionId}}\",\n        \"messageId\": \"{{$guid}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"ttl\": \"PT30S\"\n    },\n    \"message\": {\n        \"contract\": {\n            \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n            \"descriptor\": {\n                \"name\": \"Dataset Download Request\",\n                \"shortDesc\": \"Request for rainwater probability dataset\"\n            },\n            \"status\": {\n                \"code\": \"DRAFT\"\n            },\n            \"commitments\": [\n                {\n                    \"id\": \"commitment-001\",\n                    \"status\": {\n                        \"descriptor\": {\n                            \"code\": \"DRAFT\"\n                        }\n                    },\n                    \"resources\": [\n                        {\n                            \"id\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"descriptor\": {\n                                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n                            },\n                            \"quantity\": {\n                                \"unitText\": \"dataset\",\n                                \"unitCode\": \"EA\",\n                                \"value\": \"1\"\n                            }\n                        }\n                    ],\n                    \"offer\": {\n                        \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n                        \"descriptor\": {\n                            \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n                        },\n                        \"resourceIds\": [\n                            \"ds-rainprob-maharashtra-march-2025\"\n                        ],\n                        \"offerAttributes\": {\n                            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                            \"@type\": \"DatasetItem\",\n                            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n                            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n                            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                            \"schema:spatialCoverage\": {\n                                \"@type\": \"schema:Place\",\n                                \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                                \"schema:geo\": {\n                                    \"@type\": \"schema:GeoCoordinates\",\n                                    \"schema:latitude\": 20.9374,\n                                    \"schema:longitude\": 77.7796\n                                }\n                            },\n                            \"dataset:locationOfInterestType\": \"POINT\",\n                            \"dataset:granularity\": \"HOURLY\",\n                            \"dataset:dataType\": \"FORECAST\"\n                        }\n                    }\n                }\n            ],\n            \"consideration\": [\n                {\n                    \"id\": \"consideration-pricing\",\n                    \"status\": {\n                        \"code\": \"ACTIVE\"\n                    },\n                    \"considerationAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld\",\n                        \"@type\": \"PriceSpecification\",\n                        \"currency\": \"INR\",\n                        \"value\": 4999.00,\n                        \"components\": [\n                            {\n                                \"type\": \"UNIT\",\n                                \"value\": 4236.44,\n                                \"currency\": \"INR\",\n                                \"description\": \"Rainwater Probability Maharashtra March 2025 - Parquet export\"\n                            },\n                            {\n                                \"type\": \"TAX\",\n                                \"value\": 762.56,\n                                \"currency\": \"INR\",\n                                \"description\": \"GST 18%\"\n                            }\n                        ]\n                    }\n                }\n            ],\n            \"participants\": [\n                {\n                    \"id\": \"climate-data-provider-001\",\n                    \"descriptor\": {\n                        \"name\": \"Climate Data Provider\",\n                        \"shortDesc\": \"Provider of climate and meteorological data\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Provider/v2.1/context.jsonld\",\n                        \"@type\": \"Provider\",\n                        \"id\": \"climate-data-provider-001\",\n                        \"descriptor\": {\n                            \"name\": \"Climate Data Provider\"\n                        }\n                    }\n                },\n                {\n                    \"id\": \"buyer-hydrology-lab-001\",\n                    \"descriptor\": {\n                        \"name\": \"Hydrology Lab, Delhi\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Consumer/v2.0/context.jsonld\",\n                        \"@type\": \"Consumer\",\n                        \"role\": \"buyer\",\n                        \"organization\": {\n                            \"id\": \"buyer-hydrology-lab-001\",\n                            \"name\": \"Hydrology Lab, Delhi\"\n                        }\n                    }\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bap_adapter_url}}/select",
+							"host": [
+								"{{bap_adapter_url}}"
+							],
+							"path": [
+								"select"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "init",
+			"item": [
+				{
+					"name": "init",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"context\": {\n        \"networkId\": \"{{domain}}\",\n        \"action\": \"init\",\n        \"version\": \"{{version}}\",\n        \"bapId\": \"{{bapId}}\",\n        \"bapUri\": \"{{bapUri}}\",\n        \"bppId\": \"{{bppId}}\",\n        \"bppUri\": \"{{bppUri}}\",\n        \"transactionId\": \"{{transactionId}}\",\n        \"messageId\": \"{{$guid}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"ttl\": \"PT30S\"\n    },\n    \"message\": {\n        \"contract\": {\n            \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n            \"descriptor\": {\n                \"name\": \"Dataset Download Request\",\n                \"shortDesc\": \"Contract for rainwater probability dataset\"\n            },\n            \"status\": {\n                \"code\": \"ACTIVE\"\n            },\n            \"commitments\": [\n                {\n                    \"id\": \"commitment-001\",\n                    \"status\": {\n                        \"descriptor\": {\n                            \"code\": \"ACTIVE\"\n                        }\n                    },\n                    \"resources\": [\n                        {\n                            \"id\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"descriptor\": {\n                                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n                            },\n                            \"quantity\": {\n                                \"unitText\": \"dataset\",\n                                \"unitCode\": \"EA\",\n                                \"value\": \"1\"\n                            }\n                        }\n                    ],\n                    \"offer\": {\n                        \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n                        \"descriptor\": {\n                            \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n                        },\n                        \"resourceIds\": [\n                            \"ds-rainprob-maharashtra-march-2025\"\n                        ],\n                        \"offerAttributes\": {\n                            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                            \"@type\": \"DatasetItem\",\n                            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n                            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n                            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                            \"schema:spatialCoverage\": {\n                                \"@type\": \"schema:Place\",\n                                \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                                \"schema:geo\": {\n                                    \"@type\": \"schema:GeoCoordinates\",\n                                    \"schema:latitude\": 20.9374,\n                                    \"schema:longitude\": 77.7796\n                                }\n                            },\n                            \"dataset:locationOfInterestType\": \"POINT\"\n                        }\n                    }\n                }\n            ],\n            \"consideration\": [\n                {\n                    \"id\": \"consideration-pricing\",\n                    \"status\": {\n                        \"code\": \"ACTIVE\"\n                    },\n                    \"considerationAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld\",\n                        \"@type\": \"PriceSpecification\",\n                        \"currency\": \"INR\",\n                        \"value\": 4999.00,\n                        \"components\": [\n                            {\n                                \"type\": \"UNIT\",\n                                \"value\": 4236.44,\n                                \"currency\": \"INR\"\n                            },\n                            {\n                                \"type\": \"TAX\",\n                                \"value\": 762.56,\n                                \"currency\": \"INR\",\n                                \"description\": \"GST 18%\"\n                            }\n                        ]\n                    }\n                }\n            ],\n            \"participants\": [\n                {\n                    \"id\": \"climate-data-provider-001\",\n                    \"descriptor\": {\n                        \"name\": \"Climate Data Provider\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Organization/v2.0/context.jsonld\",\n                        \"@type\": \"Organization\",\n                        \"id\": \"climate-data-provider-001\",\n                        \"name\": \"Climate Data Provider\",\n                        \"organizationAttributes\": {\n                            \"role\": \"SELLER\"\n                        }\n                    }\n                },\n                {\n                    \"id\": \"buyer-hydrology-lab-001\",\n                    \"descriptor\": {\n                        \"name\": \"Hydrology Lab, Delhi\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Organization/v2.0/context.jsonld\",\n                        \"@type\": \"Organization\",\n                        \"id\": \"buyer-hydrology-lab-001\",\n                        \"name\": \"Hydrology Lab, Delhi\",\n                        \"email\": \"data-team@hydrology.example.in\",\n                        \"telephone\": \"+91-11-4000-1234\",\n                        \"organizationAttributes\": {\n                            \"role\": \"BUYER\",\n                            \"taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n                        }\n                    }\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bap_adapter_url}}/init",
+							"host": [
+								"{{bap_adapter_url}}"
+							],
+							"path": [
+								"init"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "confirm",
+			"item": [
+				{
+					"name": "confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"context\": {\n        \"networkId\": \"{{domain}}\",\n        \"action\": \"confirm\",\n        \"version\": \"{{version}}\",\n        \"bapId\": \"{{bapId}}\",\n        \"bapUri\": \"{{bapUri}}\",\n        \"bppId\": \"{{bppId}}\",\n        \"bppUri\": \"{{bppUri}}\",\n        \"transactionId\": \"{{transactionId}}\",\n        \"messageId\": \"{{$guid}}\",\n        \"timestamp\": \"{{$isoTimestamp}}\",\n        \"ttl\": \"PT30S\"\n    },\n    \"message\": {\n        \"contract\": {\n            \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n            \"descriptor\": {\n                \"name\": \"Dataset Download Request\",\n                \"shortDesc\": \"Payment completed for rainwater probability dataset\"\n            },\n            \"status\": {\n                \"code\": \"ACTIVE\"\n            },\n            \"commitments\": [\n                {\n                    \"id\": \"commitment-001\",\n                    \"status\": {\n                        \"descriptor\": {\n                            \"code\": \"ACTIVE\"\n                        }\n                    },\n                    \"resources\": [\n                        {\n                            \"id\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"descriptor\": {\n                                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n                            },\n                            \"quantity\": {\n                                \"unitText\": \"dataset\",\n                                \"unitCode\": \"EA\",\n                                \"value\": \"1\"\n                            }\n                        }\n                    ],\n                    \"offer\": {\n                        \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n                        \"descriptor\": {\n                            \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n                        },\n                        \"resourceIds\": [\n                            \"ds-rainprob-maharashtra-march-2025\"\n                        ],\n                        \"offerAttributes\": {\n                            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n                            \"@type\": \"DatasetItem\",\n                            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n                            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n                            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n                            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n                            \"schema:spatialCoverage\": {\n                                \"@type\": \"schema:Place\",\n                                \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n                                \"schema:geo\": {\n                                    \"@type\": \"schema:GeoCoordinates\",\n                                    \"schema:latitude\": 20.9374,\n                                    \"schema:longitude\": 77.7796\n                                }\n                            },\n                            \"dataset:locationOfInterestType\": \"POINT\",\n                            \"dataset:granularity\": \"HOURLY\",\n                            \"dataset:dataType\": \"FORECAST\"\n                        }\n                    }\n                }\n            ],\n            \"consideration\": [\n                {\n                    \"id\": \"consideration-pricing\",\n                    \"status\": {\n                        \"code\": \"ACTIVE\"\n                    },\n                    \"considerationAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld\",\n                        \"@type\": \"PriceSpecification\",\n                        \"currency\": \"INR\",\n                        \"value\": 4999.00,\n                        \"components\": [\n                            {\n                                \"type\": \"UNIT\",\n                                \"value\": 4236.44,\n                                \"currency\": \"INR\",\n                                \"description\": \"Rainwater Probability Maharashtra March 2025 - Parquet export\"\n                            },\n                            {\n                                \"type\": \"TAX\",\n                                \"value\": 762.56,\n                                \"currency\": \"INR\",\n                                \"description\": \"GST 18%\"\n                            }\n                        ]\n                    }\n                }\n            ],\n            \"participants\": [\n                {\n                    \"id\": \"climate-data-provider-001\",\n                    \"descriptor\": {\n                        \"name\": \"Climate Data Provider\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Organization/v2.0/context.jsonld\",\n                        \"@type\": \"Organization\",\n                        \"id\": \"climate-data-provider-001\",\n                        \"name\": \"Climate Data Provider\",\n                        \"organizationAttributes\": {\n                            \"role\": \"SELLER\"\n                        }\n                    }\n                },\n                {\n                    \"id\": \"buyer-hydrology-lab-001\",\n                    \"descriptor\": {\n                        \"name\": \"Hydrology Lab, Delhi\"\n                    },\n                    \"participantAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Organization/v2.0/context.jsonld\",\n                        \"@type\": \"Organization\",\n                        \"id\": \"buyer-hydrology-lab-001\",\n                        \"name\": \"Hydrology Lab, Delhi\",\n                        \"email\": \"data-team@hydrology.example.in\",\n                        \"telephone\": \"+91-11-4000-1234\",\n                        \"organizationAttributes\": {\n                            \"role\": \"BUYER\",\n                            \"taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n                        }\n                    }\n                }\n            ],\n            \"settlements\": [\n                {\n                    \"id\": \"settlement-payment-completed\",\n                    \"considerationId\": \"consideration-pricing\",\n                    \"status\": \"COMPLETE\",\n                    \"settlementAttributes\": {\n                        \"@context\": \"https://schema.beckn.io/Payment/v2.0/context.jsonld\",\n                        \"@type\": \"Payment\",\n                        \"beckn:paymentStatus\": \"COMPLETED\",\n                        \"beckn:amount\": {\n                            \"currency\": \"INR\",\n                            \"value\": 4999.00\n                        },\n                        \"beckn:txnRef\": \"UPI-TXN-2025-021510050122\",\n                        \"beckn:paidAt\": \"{{$isoTimestamp}}\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bap_adapter_url}}/confirm",
+							"host": [
+								"{{bap_adapter_url}}"
+							],
+							"path": [
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "nfh.global/testnet-ddm"
+		},
+		{
+			"key": "version",
+			"value": "2.0.0"
+		},
+		{
+			"key": "bapId",
+			"value": "bap.example.com"
+		},
+		{
+			"key": "bapUri",
+			"value": "http://onix-bap:8081/bap/receiver"
+		},
+		{
+			"key": "bppId",
+			"value": "bpp.example.com"
+		},
+		{
+			"key": "bppUri",
+			"value": "http://onix-bpp:8082/bpp/receiver"
+		},
+		{
+			"key": "transactionId",
+			"value": "b2bb2763-8342-4c0b-a32a-2bc6a9dab8f2"
+		},
+		{
+			"key": "bap_adapter_url",
+			"value": "http://localhost:8081/bap/caller"
+		}
+	]
 }
