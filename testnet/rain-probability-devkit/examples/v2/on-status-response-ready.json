@@ -1,0 +1,132 @@
+{
+  "context": {
+    "networkId": "beckn:dataset:ddm:1.0.0",
+    "version": "2.0.0",
+    "action": "on_status",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "60d3225e-4af9-4de8-a058-5d4de29edf35",
+    "timestamp": "2026-03-30T09:25:05Z",
+    "schemaContext": [
+      "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "contract": {
+      "id": "550e8400-e29b-41d4-a716-446655440200",
+      "descriptor": {
+        "name": "Dataset Download Request",
+        "shortDesc": "Contract for rainwater probability dataset"
+      },
+      "status": {
+        "code": "ACTIVE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-001",
+          "status": {
+            "descriptor": {
+              "code": "CLOSED"
+            }
+          },
+          "resources": [
+            {
+              "id": "ds-rainprob-maharashtra-march-2025",
+              "descriptor": {
+                "name": "Rainwater Probability Maharashtra March 2025"
+              },
+              "quantity": {
+                "unitText": "dataset",
+                "unitCode": "EA",
+                "value": "1"
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-rainprob-maharashtra-2025-03-bulk-download",
+            "descriptor": {
+              "name": "One-Time Bulk Download - Rainwater Probability Maharashtra March 2025"
+            },
+            "resourceIds": [
+              "ds-rainprob-maharashtra-march-2025"
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "perf-data-ready-001",
+          "status": {
+            "code": "DELIVERY_COMPLETE",
+            "name": "Data export complete and ready for download"
+          },
+          "commitmentIds": ["commitment-001"],
+          "performanceAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+            "@type": "DatasetItem",
+            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+            "schema:name": "Rainwater Probability Maharashtra March 2025",
+            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+            "schema:spatialCoverage": {
+              "@type": "schema:Place",
+              "schema:name": "Amravati, Maharashtra (user GPS)",
+              "schema:geo": {
+                "@type": "schema:GeoCoordinates",
+                "schema:latitude": 20.9374,
+                "schema:longitude": 77.7796
+              }
+            },
+            "dataset:exportFormat": "PARQUET",
+            "dataset:exportProgress": {
+              "percentComplete": 100,
+              "rowsProcessed": 250000,
+              "totalRows": 250000
+            },
+            "dataset:downloadUrl": "https://climate-data.example.com/exports/ds-rainprob-maharashtra-march-2025.parquet",
+            "dataset:downloadExpiresAt": "2026-04-06T09:25:05Z",
+            "dataset:fileSizeBytes": 18742500,
+            "dataset:checksum": {
+              "algorithm": "SHA-256",
+              "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "climate-data-provider-001",
+          "descriptor": {
+            "name": "Climate Data Provider"
+          }
+        },
+        {
+          "id": "buyer-hydrology-lab-001",
+          "descriptor": {
+            "name": "Hydrology Lab, Delhi"
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "settlement-payment-completed",
+          "considerationId": "consideration-pricing",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Payment/v2.0/context.jsonld",
+            "@type": "Payment",
+            "beckn:paymentStatus": "COMPLETED",
+            "beckn:amount": {
+              "currency": "INR",
+              "value": 4999.00
+            },
+            "beckn:txnRef": "UPI-TXN-2025-021510050122",
+            "beckn:paidAt": "2026-03-30T09:14:00Z"
+          }
+        }
+      ]
+    }
+  }
+}

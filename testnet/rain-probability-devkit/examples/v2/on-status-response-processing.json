@@ -1,0 +1,109 @@
+{
+  "context": {
+    "networkId": "beckn:dataset:ddm:1.0.0",
+    "version": "2.0.0",
+    "action": "on_status",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "9bd91d89-5d50-4737-bd88-2284f1b56b50",
+    "timestamp": "2026-03-30T09:20:05Z",
+    "schemaContext": [
+      "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "contract": {
+      "id": "550e8400-e29b-41d4-a716-446655440200",
+      "descriptor": {
+        "name": "Dataset Download Request",
+        "shortDesc": "Contract for rainwater probability dataset"
+      },
+      "status": {
+        "code": "ACTIVE"
+      },
+      "commitments": [
+        {
+          "id": "commitment-001",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE"
+            }
+          },
+          "resources": [
+            {
+              "id": "ds-rainprob-maharashtra-march-2025",
+              "descriptor": {
+                "name": "Rainwater Probability Maharashtra March 2025"
+              },
+              "quantity": {
+                "unitText": "dataset",
+                "unitCode": "EA",
+                "value": "1"
+              }
+            }
+          ],
+          "offer": {
+            "id": "offer-rainprob-maharashtra-2025-03-bulk-download",
+            "descriptor": {
+              "name": "One-Time Bulk Download - Rainwater Probability Maharashtra March 2025"
+            },
+            "resourceIds": [
+              "ds-rainprob-maharashtra-march-2025"
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "perf-data-preparation-001",
+          "status": {
+            "code": "PROCESSING",
+            "name": "Data export in progress"
+          },
+          "commitmentIds": ["commitment-001"],
+          "performanceAttributes": {
+            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+            "@type": "DatasetItem",
+            "schema:identifier": "ds-rainprob-maharashtra-march-2025",
+            "schema:name": "Rainwater Probability Maharashtra March 2025",
+            "schema:temporalCoverage": "2025-03-01/2025-03-31",
+            "schema:spatialCoverage": {
+              "@type": "schema:Place",
+              "schema:name": "Amravati, Maharashtra (user GPS)",
+              "schema:geo": {
+                "@type": "schema:GeoCoordinates",
+                "schema:latitude": 20.9374,
+                "schema:longitude": 77.7796
+              }
+            },
+            "dataset:exportFormat": "PARQUET",
+            "dataset:exportProgress": {
+              "percentComplete": 45,
+              "rowsProcessed": 112500,
+              "totalRows": 250000
+            },
+            "dataset:estimatedCompletionTime": "2026-03-30T09:25:00Z"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "climate-data-provider-001",
+          "descriptor": {
+            "name": "Climate Data Provider"
+          }
+        },
+        {
+          "id": "buyer-hydrology-lab-001",
+          "descriptor": {
+            "name": "Hydrology Lab, Delhi"
+          }
+        }
+      ],
+      "settlements": []
+    }
+  }
+}

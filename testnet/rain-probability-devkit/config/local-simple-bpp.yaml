@@ -31,18 +31,25 @@ modules:
         registry:
           id: dediregistry
           config:
-            url: https://api.dev.beckn.io/registry/dedi
+            url: https://fabric.nfh.global/registry/dedi
             registryName: subscribers.beckn.one
             timeout: 10
+            retry_max: 3
+            retry_wait_min: 100ms
+            retry_wait_max: 500ms
         keyManager:
           id: simplekeymanager
           config:
-            networkParticipant: ev-charging.sandbox2.com
-            keyId: 76EU7ncBX74BMNTQJMcMYoTMSzU7k71owUF53fN4jdxmosxZrdjdDk
-            signingPrivateKey: hnMdzvcZBnLJ6W1f4Y2ZCLlJo4phKMvs48ZbXjbS7/k=
-            signingPublicKey: H1xM/ejGIJpH+DmAF1A9KjBBLJ74pZ8B0gnZ4z4DIkU=
-            encrPrivateKey: hnMdzvcZBnLJ6W1f4Y2ZCLlJo4phKMvs48ZbXjbS7/k=
-            encrPublicKey: H1xM/ejGIJpH+DmAF1A9KjBBLJ74pZ8B0gnZ4z4DIkU=
+            networkParticipant: bpp.example.com
+            keyId: 76EU7ofwRCF1aobQkShARrf1PAUsNpHqWUJoynPu9w45YFKmzqaPmy
+            signingPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            signingPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+            encrPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            encrPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+        cache:
+          id: cache
+          config:
+            addr: redis:6379
         schemaValidator:
           id: schemav2validator
           config:
@@ -54,11 +61,6 @@ modules:
             extendedSchema_maxCacheSize: "100"
             extendedSchema_downloadTimeout: "30"
             extendedSchema_allowedDomains: "raw.githubusercontent.com,schema.beckn.io"
-
-        cache:
-          id: cache
-          config:
-            addr: redis:6379
         signValidator:
           id: signvalidator
         router:
@@ -84,18 +86,25 @@ modules:
         registry:
           id: dediregistry
           config:
-            url: http://34.14.173.68:8080/dedi
+            url: https://fabric.nfh.global/registry/dedi
             registryName: subscribers.beckn.one
             timeout: 10
+            retry_max: 3
+            retry_wait_min: 100ms
+            retry_wait_max: 500ms
         keyManager:
           id: simplekeymanager
           config:
-            networkParticipant: ev-charging.sandbox2.com
-            keyId: 76EU7ncBX74BMNTQJMcMYoTMSzU7k71owUF53fN4jdxmosxZrdjdDk
-            signingPrivateKey: hnMdzvcZBnLJ6W1f4Y2ZCLlJo4phKMvs48ZbXjbS7/k=
-            signingPublicKey: H1xM/ejGIJpH+DmAF1A9KjBBLJ74pZ8B0gnZ4z4DIkU=
-            encrPrivateKey: hnMdzvcZBnLJ6W1f4Y2ZCLlJo4phKMvs48ZbXjbS7/k=
-            encrPublicKey: H1xM/ejGIJpH+DmAF1A9KjBBLJ74pZ8B0gnZ4z4DIkU=
+            networkParticipant: bpp.example.com
+            keyId: 76EU7ofwRCF1aobQkShARrf1PAUsNpHqWUJoynPu9w45YFKmzqaPmy
+            signingPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            signingPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+            encrPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            encrPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+        cache:
+          id: cache
+          config:
+            addr: redis:6379
         schemaValidator:
           id: schemav2validator
           config:
@@ -107,11 +116,6 @@ modules:
             extendedSchema_maxCacheSize: "100"
             extendedSchema_downloadTimeout: "30"
             extendedSchema_allowedDomains: "raw.githubusercontent.com,schema.beckn.io"
-
-        cache:
-          id: cache
-          config:
-            addr: redis:6379
         router:
           id: router
           config:
@@ -121,7 +125,7 @@ modules:
         middleware:
           - id: reqpreprocessor
             config:
-              uuidKeys: transactionId,messageId
+              contextKeys: transactionId,messageId
               role: bpp          
       steps:
         - addRoute

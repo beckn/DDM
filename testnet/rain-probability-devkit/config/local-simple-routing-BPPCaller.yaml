@@ -1,5 +1,5 @@
 routingRules:
-  - domain: "beckn:dataset:ddm:1.0.0"  # Retail domain
+  - domain: "beckn:dataset:ddm:1.0.0"
     version: "2.0.0"
     targetType: "bap"
     endpoints:
@@ -13,3 +13,12 @@ routingRules:
       - on_rate
       - on_support
       - on_discover
+
+  - domain: "beckn:dataset:ddm:1.0.0"
+    version: "2.0.0"
+    targetType: "url"
+    target:
+      url: "https://fabric.nfh.global/beckn/catalog"
+    endpoints:
+      - publish
+      - subscribe

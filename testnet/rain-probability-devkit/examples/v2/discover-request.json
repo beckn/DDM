@@ -1,8 +1,8 @@
 {
   "context": {
-    "domain": "beckn:dataset:ddm:1.0.0",
-    "action": "discover",
+    "networkId": "beckn:dataset:ddm:1.0.0",
     "version": "2.0.0",
+    "action": "discover",
     "location": {
       "country": {
         "code": "IND"
@@ -11,16 +11,14 @@
         "code": "std:DEL"
       }
     },
-    "bapId": "ev-charging.sandbox1.com",
-    "bapUri": "https://ev-charging.sandbox1.com",
-    "networkId": "beckn:dataset:ddm:1.0.0",
+    "bapId": "bap.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "transactionId": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002",
+    "messageId": "3e2e6677-ef48-4412-ba89-af68aa3ef0cb",
+    "timestamp": "2026-03-30T09:00:00Z",
     "schemaContext": [
       "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
-    ],
-    "transactionId": "550e8400-e29b-41d4-a716-446655440100",
-    "messageId": "550e8400-e29b-41d4-a716-446655440101",
-    "ttl": "PT10M",
-    "timestamp": "2025-02-15T10:00:00Z"
+    ]
   },
   "message": {
     "intent": {

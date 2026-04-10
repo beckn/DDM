@@ -1,0 +1,282 @@
+{
+  "info": {
+    "_postman_id": "0f81aaf2-ae36-42ee-9479-21b32a82e4ac",
+    "name": "rain-probability.BPP-DDM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Buyer Provider Platform implementing rain-probability DDM APIs based on Beckn Protocol v2"
+  },
+  "item": [
+    {
+      "name": "on_cancel",
+      "item": [
+        {
+          "name": "on-cancel-response",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_cancel\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Contract cancelled for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"CANCELLED\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"CLOSED\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\"\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          }\n        }\n      ],\n      \"settlements\": [\n        {\n          \"id\": \"settlement-refund\",\n          \"considerationId\": \"consideration-pricing\",\n          \"status\": \"COMPLETE\",\n          \"settlementAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Payment/v2.0/context.jsonld\",\n            \"@type\": \"Payment\",\n            \"beckn:paymentStatus\": \"REFUNDED\",\n            \"beckn:amount\": {\n              \"currency\": \"INR\",\n              \"value\": 4999.0\n            },\n            \"beckn:txnRef\": \"UPI-REFUND-2025-021510050123\",\n            \"beckn:paidAt\": \"2026-03-30T09:25:08Z\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_cancel",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_cancel"
+              ]
+            },
+            "description": "On_cancel request: on-cancel-response"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_confirm",
+      "item": [
+        {
+          "name": "on-confirm-response",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_confirm\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Contract for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          },\n          \"commitmentAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n            \"@type\": \"DatasetItem\",\n            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n            \"schema:spatialCoverage\": {\n              \"@type\": \"schema:Place\",\n              \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n              \"schema:geo\": {\n                \"@type\": \"schema:GeoCoordinates\",\n                \"schema:latitude\": 20.9374,\n                \"schema:longitude\": 77.7796\n              }\n            },\n            \"dataset:locationOfInterestType\": \"POINT\"\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"consideration-pricing\",\n          \"status\": {\n            \"code\": \"ACTIVE\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld\",\n            \"@type\": \"PriceSpecification\",\n            \"currency\": \"INR\",\n            \"value\": 4999.0,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 4236.44,\n                \"currency\": \"INR\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 762.56,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"climate-data-provider-001\",\n            \"name\": \"Climate Data Provider\",\n            \"organizationAttributes\": {\n              \"role\": \"SELLER\"\n            }\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"buyer-hydrology-lab-001\",\n            \"name\": \"Hydrology Lab, Delhi\",\n            \"email\": \"data-team@hydrology.example.in\",\n            \"telephone\": \"+91-11-4000-1234\",\n            \"organizationAttributes\": {\n              \"role\": \"BUYER\",\n              \"taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n            }\n          }\n        }\n      ],\n      \"performance\": [],\n      \"settlements\": []\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_confirm",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_confirm"
+              ]
+            },
+            "description": "On_confirm request: on-confirm-response"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_init",
+      "item": [
+        {
+          "name": "on-init-response",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_init\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Contract for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          },\n          \"commitmentAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n            \"@type\": \"DatasetItem\",\n            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n            \"schema:spatialCoverage\": {\n              \"@type\": \"schema:Place\",\n              \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n              \"schema:geo\": {\n                \"@type\": \"schema:GeoCoordinates\",\n                \"schema:latitude\": 20.9374,\n                \"schema:longitude\": 77.7796\n              }\n            },\n            \"dataset:locationOfInterestType\": \"POINT\"\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"consideration-pricing\",\n          \"status\": {\n            \"code\": \"ACTIVE\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld\",\n            \"@type\": \"PriceSpecification\",\n            \"currency\": \"INR\",\n            \"value\": 4999.0,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 4236.44,\n                \"currency\": \"INR\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 762.56,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"climate-data-provider-001\",\n            \"name\": \"Climate Data Provider\",\n            \"organizationAttributes\": {\n              \"role\": \"SELLER\"\n            }\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"buyer-hydrology-lab-001\",\n            \"name\": \"Hydrology Lab, Delhi\",\n            \"email\": \"data-team@hydrology.example.in\",\n            \"telephone\": \"+91-11-4000-1234\",\n            \"organizationAttributes\": {\n              \"role\": \"BUYER\",\n              \"taxID\": \"GSTIN-07AAAAH0001A1Z5\"\n            }\n          }\n        }\n      ],\n      \"performance\": [],\n      \"settlements\": []\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_init",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_init"
+              ]
+            },
+            "description": "On_init request: on-init-response"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_select",
+      "item": [
+        {
+          "name": "on-select-response",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_select\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Request for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"DRAFT\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          },\n          \"commitmentAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n            \"@type\": \"DatasetItem\",\n            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n            \"schema:description\": \"Historical and forecasted rainwater probability data\",\n            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n            \"schema:spatialCoverage\": {\n              \"@type\": \"schema:Place\",\n              \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n              \"schema:geo\": {\n                \"@type\": \"schema:GeoCoordinates\",\n                \"schema:latitude\": 20.9374,\n                \"schema:longitude\": 77.7796\n              }\n            },\n            \"dataset:locationOfInterestType\": \"POINT\",\n            \"dataset:granularity\": \"HOURLY\",\n            \"dataset:dataType\": \"FORECAST\"\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"consideration-pricing\",\n          \"status\": {\n            \"code\": \"ACTIVE\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld\",\n            \"@type\": \"PriceSpecification\",\n            \"currency\": \"INR\",\n            \"value\": 4999.0,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 4236.44,\n                \"currency\": \"INR\",\n                \"description\": \"Rainwater Probability Maharashtra March 2025 - Parquet export\"\n              },\n              {\n                \"type\": \"TAX\",\n                \"value\": 762.56,\n                \"currency\": \"INR\",\n                \"description\": \"GST 18%\"\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\",\n            \"shortDesc\": \"Provider of climate and meteorological data\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"climate-data-provider-001\",\n            \"name\": \"Climate Data Provider\"\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Organization/v2.0/context.jsonld\",\n            \"@type\": \"Organization\",\n            \"id\": \"buyer-hydrology-lab-001\",\n            \"name\": \"Hydrology Lab, Delhi\"\n          }\n        }\n      ],\n      \"performance\": [],\n      \"settlements\": []\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_select",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_select"
+              ]
+            },
+            "description": "On_select request: on-select-response"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "on_status",
+      "item": [
+        {
+          "name": "on-status-response-processing",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_status\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Contract for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          }\n        }\n      ],\n      \"performance\": [\n        {\n          \"id\": \"perf-data-preparation-001\",\n          \"status\": {\n            \"code\": \"PROCESSING\",\n            \"name\": \"Data export in progress\"\n          },\n          \"commitmentIds\": [\n            \"commitment-001\"\n          ],\n          \"performanceAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n            \"@type\": \"DatasetItem\",\n            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n            \"schema:spatialCoverage\": {\n              \"@type\": \"schema:Place\",\n              \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n              \"schema:geo\": {\n                \"@type\": \"schema:GeoCoordinates\",\n                \"schema:latitude\": 20.9374,\n                \"schema:longitude\": 77.7796\n              }\n            },\n            \"dataset:exportFormat\": \"PARQUET\",\n            \"dataset:exportProgress\": {\n              \"percentComplete\": 45,\n              \"rowsProcessed\": 112500,\n              \"totalRows\": 250000\n            },\n            \"dataset:estimatedCompletionTime\": \"2026-03-30T09:25:00Z\"\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\"\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          }\n        }\n      ],\n      \"settlements\": []\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_status",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_status"
+              ]
+            },
+            "description": "On_status request: on-status-response-processing"
+          },
+          "response": []
+        },
+        {
+          "name": "on-status-response-ready",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"on_status\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440200\",\n      \"descriptor\": {\n        \"name\": \"Dataset Download Request\",\n        \"shortDesc\": \"Contract for rainwater probability dataset\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"commitment-001\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"CLOSED\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"ds-rainprob-maharashtra-march-2025\",\n              \"descriptor\": {\n                \"name\": \"Rainwater Probability Maharashtra March 2025\"\n              },\n              \"quantity\": {\n                \"unitText\": \"dataset\",\n                \"unitCode\": \"EA\",\n                \"value\": \"1\"\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ]\n          }\n        }\n      ],\n      \"performance\": [\n        {\n          \"id\": \"perf-data-ready-001\",\n          \"status\": {\n            \"code\": \"DELIVERY_COMPLETE\",\n            \"name\": \"Data export complete and ready for download\"\n          },\n          \"commitmentIds\": [\n            \"commitment-001\"\n          ],\n          \"performanceAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n            \"@type\": \"DatasetItem\",\n            \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n            \"schema:name\": \"Rainwater Probability Maharashtra March 2025\",\n            \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n            \"schema:spatialCoverage\": {\n              \"@type\": \"schema:Place\",\n              \"schema:name\": \"Amravati, Maharashtra (user GPS)\",\n              \"schema:geo\": {\n                \"@type\": \"schema:GeoCoordinates\",\n                \"schema:latitude\": 20.9374,\n                \"schema:longitude\": 77.7796\n              }\n            },\n            \"dataset:exportFormat\": \"PARQUET\",\n            \"dataset:exportProgress\": {\n              \"percentComplete\": 100,\n              \"rowsProcessed\": 250000,\n              \"totalRows\": 250000\n            },\n            \"dataset:downloadUrl\": \"https://climate-data.example.com/exports/ds-rainprob-maharashtra-march-2025.parquet\",\n            \"dataset:downloadExpiresAt\": \"2026-04-06T09:25:05Z\",\n            \"dataset:fileSizeBytes\": 18742500,\n            \"dataset:checksum\": {\n              \"algorithm\": \"SHA-256\",\n              \"value\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n            }\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"Climate Data Provider\"\n          }\n        },\n        {\n          \"id\": \"buyer-hydrology-lab-001\",\n          \"descriptor\": {\n            \"name\": \"Hydrology Lab, Delhi\"\n          }\n        }\n      ],\n      \"settlements\": [\n        {\n          \"id\": \"settlement-payment-completed\",\n          \"considerationId\": \"consideration-pricing\",\n          \"status\": \"COMPLETE\",\n          \"settlementAttributes\": {\n            \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/Payment/v2.0/context.jsonld\",\n            \"@type\": \"Payment\",\n            \"beckn:paymentStatus\": \"COMPLETED\",\n            \"beckn:amount\": {\n              \"currency\": \"INR\",\n              \"value\": 4999.0\n            },\n            \"beckn:txnRef\": \"UPI-TXN-2025-021510050122\",\n            \"beckn:paidAt\": \"2026-03-30T09:14:00Z\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/on_status",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "on_status"
+              ]
+            },
+            "description": "On_status request: on-status-response-ready"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "publish",
+      "item": [
+        {
+          "name": "publish-catalog",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"catalog/publish\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"catalogs\": [\n      {\n        \"id\": \"catalog-climate-rain-001\",\n        \"descriptor\": {\n          \"name\": \"ClimateData - Rainwater Probability Datasets\",\n          \"shortDesc\": \"Historical and forecast rain probability datasets for Indian cities and regions\"\n        },\n        \"provider\": {\n          \"id\": \"climate-data-provider-001\",\n          \"descriptor\": {\n            \"name\": \"ClimateData India Pvt. Ltd.\"\n          }\n        },\n        \"resources\": [\n          {\n            \"id\": \"ds-rainprob-delhi-ncr-march-2025\",\n            \"descriptor\": {\n              \"name\": \"Rainwater Probability - Delhi NCR - March 2025\",\n              \"shortDesc\": \"Daily probability of rainfall (%) for grid cells covering Delhi NCR for March 2025\",\n              \"longDesc\": \"Static dataset providing daily precipitation probability (%) for each 5km x 5km grid cell covering the Delhi-NCR region for the period 2025-03-01 to 2025-03-31. Derived from IMD and model ensemble outputs, suitable for hydrology, agriculture, and urban drainage planning.\"\n            },\n            \"resourceAttributes\": {\n              \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n              \"@type\": \"DatasetItem\",\n              \"schema:identifier\": \"ds-rainprob-delhi-ncr-march-2025\",\n              \"schema:name\": \"Rainwater Probability - Delhi NCR - March 2025\",\n              \"schema:description\": \"Daily precipitation probability (%) per 5km grid cell for Delhi-NCR, March 2025.\",\n              \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n              \"schema:spatialCoverage\": {\n                \"@type\": \"schema:Place\",\n                \"schema:name\": \"Delhi-NCR\",\n                \"schema:description\": \"Coverage region for the dataset (5km x 5km gridded field)\",\n                \"schema:geo\": {\n                  \"@type\": \"schema:GeoShape\",\n                  \"schema:box\": \"28.10 76.70 29.00 77.70\"\n                }\n              },\n              \"schema:license\": \"https://creativecommons.org/licenses/by/4.0/\",\n              \"schema:variableMeasured\": [\n                \"PrecipitationProbability\"\n              ],\n              \"schema:measurementTechnique\": \"Model ensemble based on IMD and global forecast systems\",\n              \"schema:temporalResolution\": \"P1D\",\n              \"schema:spatialResolution\": {\n                \"schema:value\": 5,\n                \"schema:unitText\": \"km\"\n              },\n              \"dataset:refreshType\": \"STATIC\",\n              \"dataset:granularity\": \"GRID_DAILY\",\n              \"dataset:rowCountEstimate\": 31000,\n              \"dataset:columnCount\": 5,\n              \"dataset:sensitivityLevel\": \"PUBLIC\",\n              \"dataset:dataType\": \"GriddedProbabilityField\",\n              \"dataset:qualityFlags\": {\n                \"dataset:gapFilledPercent\": 1.2,\n                \"dataset:outlierRemovedPercent\": 0.5,\n                \"dataset:validationMethod\": \"IMD_RAIN_VALIDATION_2025\"\n              }\n            }\n          },\n          {\n            \"id\": \"ds-rainprob-maharashtra-march-2025\",\n            \"descriptor\": {\n              \"name\": \"Rainwater Probability - Maharashtra - March 2025\",\n              \"shortDesc\": \"Daily probability of rainfall (%) for grid cells covering Maharashtra for March 2025\",\n              \"longDesc\": \"Static dataset providing daily precipitation probability (%) for each 5km x 5km grid cell covering the state of Maharashtra for the period 2025-03-01 to 2025-03-31. Derived from IMD and model ensemble outputs, suitable for hydrology, agriculture, reservoir operations, and state-wide planning.\"\n            },\n            \"resourceAttributes\": {\n              \"@context\": \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\",\n              \"@type\": \"DatasetItem\",\n              \"schema:identifier\": \"ds-rainprob-maharashtra-march-2025\",\n              \"schema:name\": \"Rainwater Probability - Maharashtra - March 2025\",\n              \"schema:description\": \"Daily precipitation probability (%) per 5km grid cell for Maharashtra, March 2025.\",\n              \"schema:temporalCoverage\": \"2025-03-01/2025-03-31\",\n              \"schema:spatialCoverage\": {\n                \"@type\": \"schema:Place\",\n                \"schema:name\": \"Maharashtra\",\n                \"schema:description\": \"Coverage region for the dataset (5km x 5km gridded field over Maharashtra)\",\n                \"schema:geo\": {\n                  \"@type\": \"schema:GeoShape\",\n                  \"schema:box\": \"15.60 72.60 22.00 80.90\"\n                }\n              },\n              \"schema:license\": \"https://creativecommons.org/licenses/by/4.0/\",\n              \"schema:variableMeasured\": [\n                \"PrecipitationProbability\"\n              ],\n              \"schema:measurementTechnique\": \"Model ensemble based on IMD and global forecast systems\",\n              \"schema:temporalResolution\": \"P1D\",\n              \"schema:spatialResolution\": {\n                \"schema:value\": 5,\n                \"schema:unitText\": \"km\"\n              },\n              \"dataset:refreshType\": \"STATIC\",\n              \"dataset:granularity\": \"GRID_DAILY\",\n              \"dataset:rowCountEstimate\": 250000,\n              \"dataset:columnCount\": 5,\n              \"dataset:sensitivityLevel\": \"PUBLIC\",\n              \"dataset:dataType\": \"GriddedProbabilityField\",\n              \"dataset:qualityFlags\": {\n                \"dataset:gapFilledPercent\": 1.5,\n                \"dataset:outlierRemovedPercent\": 0.7,\n                \"dataset:validationMethod\": \"IMD_RAIN_VALIDATION_2025\"\n              }\n            }\n          }\n        ],\n        \"offers\": [\n          {\n            \"id\": \"offer-rainprob-delhi-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Delhi-NCR March 2025\",\n              \"shortDesc\": \"Single download of the complete March 2025 rainwater probability dataset in Parquet format, valid for 7 days\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-delhi-ncr-march-2025\"\n            ],\n            \"validity\": {\n              \"startDate\": \"2025-02-01T00:00:00Z\",\n              \"endDate\": \"2026-01-31T23:59:59Z\"\n            },\n            \"considerations\": [\n              {\n                \"id\": \"consideration-rainprob-delhi-price\",\n                \"status\": {\n                  \"code\": \"ACTIVE\"\n                },\n                \"considerationAttributes\": {\n                  \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld\",\n                  \"@type\": \"PriceSpecification\",\n                  \"currency\": \"INR\",\n                  \"value\": 2499.0,\n                  \"components\": [\n                    {\n                      \"type\": \"UNIT\",\n                      \"value\": 2117.8,\n                      \"currency\": \"INR\",\n                      \"description\": \"Rainwater Probability Delhi-NCR March 2025 - Parquet export\"\n                    },\n                    {\n                      \"type\": \"TAX\",\n                      \"value\": 381.2,\n                      \"currency\": \"INR\",\n                      \"description\": \"GST 18%\"\n                    }\n                  ]\n                }\n              }\n            ]\n          },\n          {\n            \"id\": \"offer-rainprob-maharashtra-2025-03-bulk-download\",\n            \"descriptor\": {\n              \"name\": \"One-Time Bulk Download - Rainwater Probability Maharashtra March 2025\",\n              \"shortDesc\": \"Single download of the complete March 2025 Maharashtra rainwater probability dataset in Parquet format, valid for 7 days\"\n            },\n            \"resourceIds\": [\n              \"ds-rainprob-maharashtra-march-2025\"\n            ],\n            \"validity\": {\n              \"startDate\": \"2025-02-01T00:00:00Z\",\n              \"endDate\": \"2026-01-31T23:59:59Z\"\n            },\n            \"considerations\": [\n              {\n                \"id\": \"consideration-rainprob-maharashtra-price\",\n                \"status\": {\n                  \"code\": \"ACTIVE\"\n                },\n                \"considerationAttributes\": {\n                  \"@context\": \"https://raw.githubusercontent.com/beckn/schemas/refs/heads/main/schema/PriceSpecification/v2.1/context.jsonld\",\n                  \"@type\": \"PriceSpecification\",\n                  \"currency\": \"INR\",\n                  \"value\": 4999.0,\n                  \"components\": [\n                    {\n                      \"type\": \"UNIT\",\n                      \"value\": 4236.44,\n                      \"currency\": \"INR\",\n                      \"description\": \"Rainwater Probability Maharashtra March 2025 - Parquet export\"\n                    },\n                    {\n                      \"type\": \"TAX\",\n                      \"value\": 762.56,\n                      \"currency\": \"INR\",\n                      \"description\": \"GST 18%\"\n                    }\n                  ]\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bpp_adapter_url}}/publish",
+              "host": [
+                "{{bpp_adapter_url}}"
+              ],
+              "path": [
+                "publish"
+              ]
+            },
+            "description": "Publish request: publish-catalog"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Pure JS pre-request script to replace moment()",
+          "// 1) ISO 8601 timestamp without needing moment",
+          "const isoTimestamp = new Date().toISOString();",
+          "pm.collectionVariables.set('iso_date', isoTimestamp);",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "domain",
+      "value": "beckn:dataset:ddm:1.0.0"
+    },
+    {
+      "key": "version",
+      "value": "2.0.0"
+    },
+    {
+      "key": "bap_id",
+      "value": "bap.example.com"
+    },
+    {
+      "key": "bap_uri",
+      "value": "http://onix-bap:8081/bap/receiver"
+    },
+    {
+      "key": "bpp_id",
+      "value": "bpp.example.com"
+    },
+    {
+      "key": "bpp_uri",
+      "value": "http://onix-bpp:8082/bpp/receiver"
+    },
+    {
+      "key": "transaction_id",
+      "value": "2b4d69aa-22e4-4c78-9f56-5a7b9e2b2002"
+    },
+    {
+      "key": "iso_date",
+      "value": ""
+    },
+    {
+      "key": "bpp_adapter_url",
+      "value": "http://localhost:8082/bpp/caller"
+    }
+  ]
+}
