@@ -1,6 +1,6 @@
 {
   "context": {
-    "networkId": "beckn:dataset:ddm:1.0.0",
+    "networkId": "nfh.global/testnet-ddm",
     "action": "discover",
     "version": "2.0.0",
     "location": {
@@ -11,8 +11,8 @@
         "code": "std:DEL"
       }
     },
-    "bapId": "ev-charging.sandbox1.com",
-    "bapUri": "https://ev-charging.sandbox1.com",
+    "bapId": "bap.example.com",
+    "bapUri": "https://bap.example.com",
     "schemaContext": [
       "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
     ],

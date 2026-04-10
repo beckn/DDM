@@ -163,7 +163,7 @@
 	"variable": [
 		{
 			"key": "domain",
-			"value": "beckn:dataset:ddm:1.0.0"
+			"value": "nfh.global/testnet-ddm"
 		},
 		{
 			"key": "version",
@@ -171,7 +171,7 @@
 		},
 		{
 			"key": "bapId",
-			"value": "ev-charging.sandbox1.com"
+			"value": "bap.example.com"
 		},
 		{
 			"key": "bapUri",
@@ -179,7 +179,7 @@
 		},
 		{
 			"key": "bppId",
-			"value": "ev-charging.sandbox2.com"
+			"value": "bpp.example.com"
 		},
 		{
 			"key": "bppUri",
