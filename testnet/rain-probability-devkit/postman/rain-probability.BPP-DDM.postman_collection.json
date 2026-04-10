@@ -244,7 +244,7 @@
   "variable": [
     {
       "key": "domain",
-      "value": "beckn:dataset:ddm:1.0.0"
+      "value": "nfh.global/testnet-ddm"
     },
     {
       "key": "version",

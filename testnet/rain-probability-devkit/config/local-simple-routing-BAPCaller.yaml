@@ -1,5 +1,5 @@
 routingRules:
-  - domain: "beckn:dataset:ddm:1.0.0"
+  - domain: "nfh.global/testnet-ddm"
     version: "2.0.0"
     targetType: "bpp"
     endpoints:
@@ -13,7 +13,7 @@ routingRules:
       - rate
       - support
 
-  - domain: "beckn:dataset:ddm:1.0.0"
+  - domain: "nfh.global/testnet-ddm"
     version: "2.0.0"
     targetType: "url"
     target:
@@ -21,7 +21,7 @@ routingRules:
     endpoints:
       - discover
 
-  - domain: "beckn:dataset:ddm:1.0.0"
+  - domain: "nfh.global/testnet-ddm"
     version: "2.0.0"
     targetType: "url"
     target:

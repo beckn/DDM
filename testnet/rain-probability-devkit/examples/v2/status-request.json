@@ -1,6 +1,6 @@
 {
   "context": {
-    "networkId": "beckn:dataset:ddm:1.0.0",
+    "networkId": "nfh.global/testnet-ddm",
     "version": "2.0.0",
     "action": "status",
     "bapId": "bap.example.com",

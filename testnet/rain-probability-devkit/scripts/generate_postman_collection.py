@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 
 DEVKIT_CONFIG = {
-    "domain": "beckn:dataset:ddm:1.0.0",
+    "domain": "nfh.global/testnet-ddm",
     "bap_id": "bap.example.com",
     "bap_uri": "http://onix-bap:8081/bap/receiver",
     "bpp_id": "bpp.example.com",

@@ -208,7 +208,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"catalog/subscription\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"subscription\": {\n      \"networkIds\": [\n        \"beckn:dataset:ddm:1.0.0\"\n      ],\n      \"schemaTypes\": [\n        \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n      ],\n      \"callbackUrl\": \"https://hydrology-lab.example.in/beckn/catalog/callback\"\n    }\n  }\n}",
+              "raw": "{\n  \"context\": {\n    \"networkId\": \"{{domain}}\",\n    \"version\": \"{{version}}\",\n    \"action\": \"catalog/subscription\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"timestamp\": \"{{iso_date}}\",\n    \"schemaContext\": [\n      \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"subscription\": {\n      \"networkIds\": [\n        \"nfh.global/testnet-ddm\"\n      ],\n      \"schemaTypes\": [\n        \"https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld\"\n      ],\n      \"callbackUrl\": \"https://hydrology-lab.example.in/beckn/catalog/callback\"\n    }\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -249,7 +249,7 @@
   "variable": [
     {
       "key": "domain",
-      "value": "beckn:dataset:ddm:1.0.0"
+      "value": "nfh.global/testnet-ddm"
     },
     {
       "key": "version",
