@@ -21,7 +21,6 @@ components:
           format: uri
         "@type":
           type: string
-          enum: ["beckn:DatasetFulfillment"]
         "fulfillment:accessMethod":
           type: string
           description: Access method code (DOWNLOAD, API, STREAM, DATA_ROOM, SFTP).
