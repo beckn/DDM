@@ -90,6 +90,18 @@
       "rdfs:comment": "Standard or algorithm used for dataset validation."
     },
     {
+      "@id": "dataset:accessMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessMethod",
+      "rdfs:comment": "How the dataset is delivered: INLINE (in-message via dataPayload), DOWNLOAD (fetch from URL), DATA_ENCLAVE (secure enclave access), or OFF_CHANNEL (arranged outside beckn)."
+    },
+    {
+      "@id": "dataset:dataPayload",
+      "@type": "rdf:Property",
+      "rdfs:label": "dataPayload",
+      "rdfs:comment": "Optional inline data payload carrying actual dataset content within the beckn message. A self-describing JSON-LD object whose @context resolves to the payload schema."
+    },
+    {
       "@id": "dataset:verticalRange",
       "@type": "rdf:Property",
       "rdfs:label": "verticalRange",

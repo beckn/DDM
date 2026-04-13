@@ -104,6 +104,43 @@ components:
         "dataset:latestRawDataAt":
           type: string
           format: date-time
+        "dataset:accessMethod":
+          type: string
+          description: >
+            How the dataset is delivered to the consumer.
+            INLINE — data embedded in the beckn message via dataPayload.
+            DOWNLOAD — consumer fetches from a URL in schema:distribution.
+            DATA_ENCLAVE — consumer accesses data within a secure enclave environment.
+            OFF_CHANNEL — delivery arranged outside the beckn network.
+          enum:
+            - INLINE
+            - DOWNLOAD
+            - DATA_ENCLAVE
+            - OFF_CHANNEL
+        "dataset:dataPayload":
+          description: >
+            Optional inline data payload. When present, carries the actual dataset
+            content within the beckn message. The @context URI must resolve to a
+            valid schema that describes the payload structure. Used when
+            dataset:accessMethod is INLINE.
+          type: object
+          required:
+            - "@context"
+            - "@type"
+          additionalProperties: true
+          properties:
+            "@context":
+              description: JSON-LD context URI resolving to the payload's schema.
+              oneOf:
+                - type: string
+                  format: uri
+                - type: array
+                  items:
+                    type: string
+                    format: uri
+            "@type":
+              description: The type of data payload (e.g., MeterData, BillingSummary, UtilityCustomerCredential).
+              type: string
         "dataset:qualityFlags":
           type: object
           additionalProperties: true

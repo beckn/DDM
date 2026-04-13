@@ -20,6 +20,12 @@
     "uptime99DayPercent": "dataset:uptime99DayPercent",
     "validationMethod": "dataset:validationMethod",
 
+    "accessMethod": "dataset:accessMethod",
+    "dataPayload": {
+      "@id": "dataset:dataPayload",
+      "@type": "@id"
+    },
+
     "verticalRange": "dataset:verticalRange",
     "dataType": "dataset:dataType",
     "rawUpdateFrequency": "dataset:rawUpdateFrequency",
