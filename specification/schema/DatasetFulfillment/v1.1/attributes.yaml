@@ -1,0 +1,248 @@
+openapi: 3.1.0
+info:
+  title: DatasetFulfillment
+  version: 1.1.0
+  description: >
+    Access provisioning details for a fulfilled dataset order.
+    v1.1 adds fulfillment:streamConnection for streaming transport credentials
+    (MQTT, Kafka, REST API, cloud data lake) and relaxes required fields so
+    that accessUrl/accessStart/accessEnd are only needed for DOWNLOAD.
+    Fully backward-compatible with v1.0.
+paths: {}
+components:
+  schemas:
+    DatasetFulfillment:
+      type: object
+      description: Attributes for digital dataset fulfillment attached via beckn:deliveryAttributes.
+      additionalProperties: true
+      required:
+        - "fulfillment:accessMethod"
+      properties:
+        "@context":
+          type: string
+          format: uri
+        "@type":
+          type: string
+        "fulfillment:accessMethod":
+          type: string
+          description: >
+            Access method code indicating how the buyer receives the data.
+            DOWNLOAD — time-limited URL fetch (fulfillment:accessUrl required).
+            API — REST API access; credentials in fulfillment:streamConnection.
+            STREAM — generic real-time stream (use MQTT or KAFKA for specificity).
+            MQTT — MQTT 5.0 push; credentials in fulfillment:streamConnection.
+            KAFKA — Apache Kafka consumer; credentials in fulfillment:streamConnection.
+            DATA_LAKE — cloud object storage; credentials in fulfillment:streamConnection.
+            DATA_ROOM — secure data room access.
+            SFTP — SFTP server access.
+          enum:
+            - DOWNLOAD
+            - API
+            - STREAM
+            - MQTT
+            - KAFKA
+            - DATA_LAKE
+            - DATA_ROOM
+            - SFTP
+        "fulfillment:accessUrl":
+          type: string
+          format: uri
+          description: >
+            Signed or time-limited URL for accessing the dataset.
+            Required when fulfillment:accessMethod is DOWNLOAD.
+        "fulfillment:accessStart":
+          type: string
+          format: date-time
+          description: Start of the access window (ISO 8601 date-time).
+        "fulfillment:accessEnd":
+          type: string
+          format: date-time
+          description: >
+            End of the access window (ISO 8601 date-time).
+            For streaming methods, use fulfillment:streamConnection.fulfillment:credentialExpiresAt instead.
+        "fulfillment:format":
+          type: string
+          description: File or message format (e.g. Parquet, CSV, JSON, Avro, NDJSON).
+        "fulfillment:fileSizeBytes":
+          type: integer
+          description: Approximate size of the delivered file in bytes (DOWNLOAD only).
+        "fulfillment:maxDownloads":
+          type: integer
+          description: Maximum number of times the dataset can be downloaded (DOWNLOAD only).
+        "fulfillment:downloadsUsed":
+          type: integer
+          description: Number of downloads already used by the buyer (DOWNLOAD only).
+        "fulfillment:supportEmail":
+          type: string
+          format: email
+        "fulfillment:termsUrl":
+          type: string
+          format: uri
+        "fulfillment:attributionText":
+          type: string
+        "fulfillment:streamConnection":
+          type: object
+          description: >
+            Stream connection credentials provisioned for the buyer after confirm.
+            Required when fulfillment:accessMethod is MQTT, KAFKA, API, or DATA_LAKE.
+            All credentials MUST be short-lived; set fulfillment:credentialExpiresAt
+            and instruct the buyer to call update before expiry for rotation.
+            The @type discriminator determines which credential fields apply.
+          additionalProperties: true
+          properties:
+            "@type":
+              type: string
+              description: Credential shape discriminator.
+              enum:
+                - MQTTConnection
+                - KafkaConsumerCredentials
+                - ApiCredential
+                - DataLakeCredential
+
+            "fulfillment:credentialExpiresAt":
+              type: string
+              format: date-time
+              description: >
+                When these credentials expire. The buyer must call update before
+                this timestamp to rotate credentials and maintain stream access.
+
+            # ── MQTT fields ────────────────────────────────────────────────
+            "fulfillment:brokerUri":
+              type: string
+              description: >
+                MQTT broker URI (e.g. mqtts://iotcore.example.com:8883).
+                Required for MQTTConnection.
+            "fulfillment:topic":
+              type: string
+              description: >
+                MQTT topic filter the buyer should subscribe to
+                (e.g. energy/meters/zone-a/#). Required for MQTTConnection.
+            "fulfillment:qos":
+              type: integer
+              description: MQTT Quality of Service level agreed for this subscription.
+              enum: [0, 1, 2]
+            "fulfillment:clientId":
+              type: string
+              description: MQTT client ID the broker has provisioned for this buyer.
+            "fulfillment:username":
+              type: string
+              description: MQTT username (short-lived; rotate via update before credentialExpiresAt).
+            "fulfillment:password":
+              type: string
+              description: MQTT password or JWT token (short-lived).
+            "fulfillment:tlsCaCert":
+              type: string
+              description: PEM-encoded CA certificate for TLS verification (mqtts:// connections).
+            "fulfillment:sessionExpiry":
+              type: string
+              description: >
+                MQTT 5.0 Session Expiry Interval as ISO 8601 duration (e.g. PT24H).
+                After this the broker will discard the session if the client disconnects.
+
+            # ── Kafka fields ───────────────────────────────────────────────
+            "fulfillment:bootstrapServers":
+              type: string
+              description: >
+                Comma-separated Kafka bootstrap server list
+                (e.g. pkc-xyz.ap-south1.gcp.confluent.cloud:9092).
+                Required for KafkaConsumerCredentials.
+            "fulfillment:topicName":
+              type: string
+              description: Kafka topic to consume (Required for KafkaConsumerCredentials).
+            "fulfillment:consumerGroupId":
+              type: string
+              description: Kafka consumer group ID provisioned for this buyer.
+            "fulfillment:saslMechanism":
+              type: string
+              description: SASL authentication mechanism.
+              enum: [PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER]
+            "fulfillment:saslUsername":
+              type: string
+              description: Kafka SASL username / API key (short-lived).
+            "fulfillment:saslPassword":
+              type: string
+              description: Kafka SASL password / API secret (short-lived).
+            "fulfillment:schemaRegistryUrl":
+              type: string
+              format: uri
+              description: Schema Registry URL for Avro/Protobuf deserialization.
+            "fulfillment:schemaRegistryUsername":
+              type: string
+            "fulfillment:schemaRegistryPassword":
+              type: string
+            "fulfillment:startOffset":
+              type: string
+              description: Where to begin consuming (latest or earliest).
+              enum: [latest, earliest]
+
+            # ── API fields ─────────────────────────────────────────────────
+            "fulfillment:apiEndpoint":
+              type: string
+              format: uri
+              description: Base URL of the REST API (Required for ApiCredential).
+            "fulfillment:apiDocUrl":
+              type: string
+              format: uri
+              description: >
+                URL to the OpenAPI / Swagger specification for this API.
+                Consumers use this to auto-generate clients or explore endpoints.
+            "fulfillment:authScheme":
+              type: string
+              description: Authentication scheme for the API.
+              enum: [BEARER, API_KEY, BASIC, OAUTH2_CLIENT_CREDENTIALS]
+            "fulfillment:bearerToken":
+              type: string
+              description: Short-lived bearer token (JWT). Rotate via update before credentialExpiresAt.
+            "fulfillment:apiKey":
+              type: string
+              description: API key (short-lived). Rotate via update before credentialExpiresAt.
+            "fulfillment:rateLimitRpm":
+              type: integer
+              description: Requests per minute the buyer is allowed under this contract.
+
+            # ── Data Lake fields ───────────────────────────────────────────
+            "fulfillment:cloudProvider":
+              type: string
+              description: Cloud object storage provider.
+              enum: [AWS_S3, GCS, AZURE_ADLS]
+            "fulfillment:accessType":
+              type: string
+              description: >
+                Credential type for object storage access.
+                PRESIGNED_URL — single signed URL (static dataset, short TTL).
+                STS_CREDENTIALS — temporary IAM role credentials (live/append datasets).
+                SAS_TOKEN — Azure Shared Access Signature (ADLS).
+              enum: [PRESIGNED_URL, STS_CREDENTIALS, SAS_TOKEN]
+            "fulfillment:bucket":
+              type: string
+              description: S3 bucket name or GCS bucket name.
+            "fulfillment:storagePrefix":
+              type: string
+              description: Object key prefix scoped to this buyer's data partition.
+            "fulfillment:presignedUrl":
+              type: string
+              format: uri
+              description: Pre-signed GET URL (PRESIGNED_URL access type only).
+            "fulfillment:accessKeyId":
+              type: string
+              description: AWS temporary access key ID (STS_CREDENTIALS only).
+            "fulfillment:secretAccessKey":
+              type: string
+              description: AWS temporary secret access key (STS_CREDENTIALS only).
+            "fulfillment:sessionToken":
+              type: string
+              description: AWS STS session token (STS_CREDENTIALS only).
+            "fulfillment:sasToken":
+              type: string
+              description: Azure SAS token appended to the blob/container URL (SAS_TOKEN only).
+            "fulfillment:storageRegion":
+              type: string
+              description: Cloud region where the storage bucket is hosted.
+            "fulfillment:fileFormat":
+              type: string
+              description: Format of files in the storage path (e.g. NDJSON, Parquet, CSV).
+            "fulfillment:partitionPattern":
+              type: string
+              description: >
+                Partition path pattern for live-append datasets
+                (e.g. year={yyyy}/month={MM}/day={dd}/).
