@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dataset": "https://beckn.org/schema/dataset#",
+    "fulfillment": "https://beckn.org/schema/dataset-fulfillment#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "dataset:DatasetItem",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetItem",
+      "rdfs:comment": "A dataset product in a Beckn catalog, extending schema.org Dataset. Carried as resourceAttributes / commitmentAttributes / offerAttributes in beckn messages.",
+      "rdfs:subClassOf": { "@id": "schema:Dataset" }
+    },
+    {
+      "@id": "fulfillment:DatasetFulfillment",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetFulfillment",
+      "rdfs:comment": "Access provisioning details for a fulfilled dataset order — delivery method plus the credentials or URLs required to retrieve the data. Carried as performanceAttributes / fulfillmentAttributes in beckn messages.",
+      "rdfs:subClassOf": { "@id": "schema:DataDownload" }
+    }
+  ]
+}

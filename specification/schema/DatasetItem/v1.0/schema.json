@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.beckn.io/DatasetItem/v1.0/schema.json",
+  "title": "DatasetItem",
+  "description": "Dataset metadata aligned with schema.org Dataset plus Beckn dataset extensions. Carried as resourceAttributes / commitmentAttributes / offerAttributes in beckn messages.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema:identifier",
+    "schema:name",
+    "schema:temporalCoverage"
+  ],
+  "properties": {
+    "@context": {
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "array", "items": { "type": "string", "format": "uri" } }
+      ]
+    },
+    "@type": {
+      "type": "string",
+      "enum": ["DatasetItem"]
+    },
+    "schema:identifier": { "type": "string" },
+    "schema:name": { "type": "string" },
+    "schema:description": { "type": "string" },
+    "schema:temporalCoverage": { "type": "string" },
+    "schema:spatialCoverage": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:license": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:distribution": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "schema:variableMeasured": {
+      "type": "array",
+      "items": {
+        "oneOf": [{ "type": "string" }, { "type": "object" }]
+      }
+    },
+    "schema:measurementTechnique": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:usageInfo": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:conditionsOfAccess": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:temporalResolution": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:spatialResolution": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:creator": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:isBasedOn": {
+      "oneOf": [{ "type": "string" }, { "type": "array" }]
+    },
+    "dataset:refreshType": { "type": "string" },
+    "dataset:refreshFrequency": { "type": "string" },
+    "dataset:granularity": { "type": "string" },
+    "dataset:rowCountEstimate": { "type": "integer" },
+    "dataset:columnCount": { "type": "integer" },
+    "dataset:sensitivityLevel": { "type": "string" },
+    "dataset:verticalRange": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "dataset:dataType": { "type": "string" },
+    "dataset:rawUpdateFrequency": { "type": "string" },
+    "dataset:latestRawDataAt": { "type": "string", "format": "date-time" },
+    "dataset:accessMethod": {
+      "type": "string",
+      "description": "How the dataset is delivered to the consumer. INLINE — data embedded via dataPayload. DOWNLOAD — consumer fetches from a URL. DATA_ENCLAVE — secure enclave access. OFF_CHANNEL — arranged outside beckn.",
+      "enum": ["INLINE", "DOWNLOAD", "DATA_ENCLAVE", "OFF_CHANNEL"]
+    },
+    "dataset:dataPayload": {
+      "description": "Optional inline data payload. Carries the actual dataset content when dataset:accessMethod is INLINE. The @context URI must resolve to a schema describing the payload.",
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["@context", "@type"],
+      "properties": {
+        "@context": {
+          "oneOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "array", "items": { "type": "string", "format": "uri" } }
+          ]
+        },
+        "@type": { "type": "string" }
+      }
+    },
+    "dataset:qualityFlags": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "dataset:gapFilledPercent": { "type": "number" },
+        "dataset:outlierRemovedPercent": { "type": "number" },
+        "dataset:latencyMinutes": { "type": "integer" },
+        "dataset:uptime99DayPercent": { "type": "number" },
+        "dataset:validationMethod": { "type": "string" }
+      }
+    }
+  }
+}

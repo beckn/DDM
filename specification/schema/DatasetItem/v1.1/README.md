@@ -1,6 +1,6 @@
 # DatasetItem — v1.1
 
-Extends [v1](../v1/attributes.yaml) with streaming transport access methods and catalog-time stream metadata. Fully backward-compatible — all v1 fields and enum values are preserved unchanged.
+Extends [v1.0](../v1.0/attributes.yaml) with streaming transport access methods and catalog-time stream metadata. Fully backward-compatible — all v1.0 fields and enum values are preserved unchanged.
 
 ## What's new in v1.1
 

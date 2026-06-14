@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.beckn.io/DatasetItem/v1.1/schema.json",
+  "title": "DatasetItem",
+  "description": "Dataset metadata aligned with schema.org Dataset plus Beckn dataset extensions. v1.1 adds streaming transport access methods (MQTT, KAFKA, API, DATA_LAKE) and the dataset:streamMeta sub-object for catalog-time stream topology metadata. Fully backward-compatible with v1.0.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema:identifier",
+    "schema:name",
+    "schema:temporalCoverage"
+  ],
+  "properties": {
+    "@context": {
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "array", "items": { "type": "string", "format": "uri" } }
+      ]
+    },
+    "@type": {
+      "type": "string",
+      "enum": ["DatasetItem"]
+    },
+    "schema:identifier": { "type": "string" },
+    "schema:name": { "type": "string" },
+    "schema:description": { "type": "string" },
+    "schema:temporalCoverage": { "type": "string" },
+    "schema:spatialCoverage": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:license": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:distribution": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "schema:variableMeasured": {
+      "type": "array",
+      "items": {
+        "oneOf": [{ "type": "string" }, { "type": "object" }]
+      }
+    },
+    "schema:measurementTechnique": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:usageInfo": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:conditionsOfAccess": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:temporalResolution": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:spatialResolution": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:creator": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "schema:isBasedOn": {
+      "oneOf": [{ "type": "string" }, { "type": "array" }]
+    },
+    "dataset:refreshType": { "type": "string" },
+    "dataset:refreshFrequency": { "type": "string" },
+    "dataset:granularity": { "type": "string" },
+    "dataset:rowCountEstimate": { "type": "integer" },
+    "dataset:columnCount": { "type": "integer" },
+    "dataset:sensitivityLevel": { "type": "string" },
+    "dataset:verticalRange": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }]
+    },
+    "dataset:dataType": { "type": "string" },
+    "dataset:rawUpdateFrequency": { "type": "string" },
+    "dataset:latestRawDataAt": { "type": "string", "format": "date-time" },
+    "dataset:accessMethod": {
+      "type": "string",
+      "description": "How the dataset is delivered. INLINE/DOWNLOAD/DATA_ENCLAVE/OFF_CHANNEL from v1.0; v1.1 adds MQTT/KAFKA/API/DATA_LAKE — for streaming methods, credentials are provisioned in DatasetFulfillment after confirm.",
+      "enum": [
+        "INLINE",
+        "DOWNLOAD",
+        "DATA_ENCLAVE",
+        "OFF_CHANNEL",
+        "MQTT",
+        "KAFKA",
+        "API",
+        "DATA_LAKE"
+      ]
+    },
+    "dataset:streamMeta": {
+      "type": "object",
+      "description": "Catalog-time metadata describing the stream topology. Present when accessMethod is MQTT, KAFKA, API, or DATA_LAKE. Conveys what the stream looks like (format, frequency, message schema) without exposing credentials. Credentials are provisioned in DatasetFulfillment after the buyer confirms the order.",
+      "additionalProperties": true,
+      "properties": {
+        "dataset:streamProtocol": {
+          "type": "string",
+          "description": "Transport protocol — informational mirror of accessMethod.",
+          "enum": ["MQTT", "KAFKA", "API", "DATA_LAKE"]
+        },
+        "dataset:messageFormat": {
+          "type": "string",
+          "description": "Encoding format for stream messages or delivered files (e.g. JSON, NDJSON, Avro, Protobuf, Parquet, CSV)."
+        },
+        "dataset:updateFrequency": {
+          "type": "string",
+          "description": "How often new data arrives. ISO 8601 duration (e.g. PT15M) or the literal REAL_TIME for sub-second streams."
+        },
+        "dataset:messageSchemaUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the message or file schema (JSON Schema, Avro schema, Protobuf descriptor, or OpenAPI spec)."
+        }
+      }
+    },
+    "dataset:dataPayload": {
+      "description": "Optional inline data payload. Carries the actual dataset content when dataset:accessMethod is INLINE. The @context URI must resolve to a schema describing the payload.",
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["@context", "@type"],
+      "properties": {
+        "@context": {
+          "oneOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "array", "items": { "type": "string", "format": "uri" } }
+          ]
+        },
+        "@type": { "type": "string" }
+      }
+    },
+    "dataset:qualityFlags": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "dataset:gapFilledPercent": { "type": "number" },
+        "dataset:outlierRemovedPercent": { "type": "number" },
+        "dataset:latencyMinutes": { "type": "integer" },
+        "dataset:uptime99DayPercent": { "type": "number" },
+        "dataset:validationMethod": { "type": "string" }
+      }
+    }
+  }
+}
