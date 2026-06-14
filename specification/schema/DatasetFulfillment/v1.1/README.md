@@ -1,6 +1,6 @@
 # DatasetFulfillment — v1.1
 
-Extends [v1](../v1/attributes.yaml) with `fulfillment:streamConnection` — a credential delivery object for streaming transport access methods (MQTT, Kafka, REST API, cloud data lake). Fully backward-compatible — all v1 fields remain.
+Extends [v1.0](../v1.0/attributes.yaml) with `fulfillment:streamConnection` — a credential delivery object for streaming transport access methods (MQTT, Kafka, REST API, cloud data lake). Fully backward-compatible — all v1.0 fields remain.
 
 ## What's new in v1.1
 

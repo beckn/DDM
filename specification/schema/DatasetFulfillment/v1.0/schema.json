@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.beckn.io/DatasetFulfillment/v1.0/schema.json",
+  "title": "DatasetFulfillment",
+  "description": "Access provisioning details for a fulfilled dataset order. Delivery method plus credentials or signed URLs required to retrieve the data. Carried as performanceAttributes / fulfillmentAttributes in beckn messages.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fulfillment:accessMethod",
+    "fulfillment:accessUrl",
+    "fulfillment:accessStart",
+    "fulfillment:accessEnd"
+  ],
+  "properties": {
+    "@context": { "type": "string", "format": "uri" },
+    "@type": { "type": "string" },
+    "fulfillment:accessMethod": {
+      "type": "string",
+      "description": "Access method code (DOWNLOAD, API, STREAM, DATA_ROOM, SFTP).",
+      "enum": ["DOWNLOAD", "API", "STREAM", "DATA_ROOM", "SFTP"]
+    },
+    "fulfillment:accessUrl": { "type": "string", "format": "uri" },
+    "fulfillment:accessStart": { "type": "string", "format": "date-time" },
+    "fulfillment:accessEnd": { "type": "string", "format": "date-time" },
+    "fulfillment:format": { "type": "string" },
+    "fulfillment:fileSizeBytes": { "type": "integer" },
+    "fulfillment:maxDownloads": { "type": "integer" },
+    "fulfillment:downloadsUsed": { "type": "integer" },
+    "fulfillment:supportEmail": { "type": "string", "format": "email" },
+    "fulfillment:termsUrl": { "type": "string", "format": "uri" },
+    "fulfillment:attributionText": { "type": "string" }
+  }
+}

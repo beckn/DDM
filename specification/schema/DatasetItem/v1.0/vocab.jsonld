@@ -2,21 +2,10 @@
   "@context": {
     "@version": 1.1,
     "dataset": "https://beckn.org/schema/dataset#",
-    "schema": "https://schema.org/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
   },
   "@graph": [
-    {
-      "@id": "dataset:DatasetItem",
-      "@type": "rdfs:Class",
-      "rdfs:label": "DatasetItem",
-      "rdfs:comment": "A dataset product in a Beckn catalog, extending schema.org Dataset.",
-      "rdfs:subClassOf": {
-        "@id": "schema:Dataset"
-      }
-    },
     {
       "@id": "dataset:refreshType",
       "@type": "rdf:Property",
@@ -127,4 +116,3 @@
     }
   ]
 }
-

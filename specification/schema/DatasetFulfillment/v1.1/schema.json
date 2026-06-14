@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.beckn.io/DatasetFulfillment/v1.1/schema.json",
+  "title": "DatasetFulfillment",
+  "description": "Access provisioning details for a fulfilled dataset order. v1.1 adds fulfillment:streamConnection for streaming transport credentials (MQTT, Kafka, REST API, cloud data lake) and relaxes required fields so only accessMethod is mandatory. accessUrl/accessStart/accessEnd are still present and used by DOWNLOAD; streaming methods use streamConnection.credentialExpiresAt instead. Fully backward-compatible with v1.0.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["fulfillment:accessMethod"],
+  "properties": {
+    "@context": { "type": "string", "format": "uri" },
+    "@type": { "type": "string" },
+    "fulfillment:accessMethod": {
+      "type": "string",
+      "description": "Access method code indicating how the buyer receives the data. DOWNLOAD — time-limited URL fetch (accessUrl required). API — REST API; credentials in streamConnection. STREAM — generic real-time stream. MQTT/KAFKA/DATA_LAKE — credentials in streamConnection. DATA_ROOM — secure data room. SFTP — SFTP server.",
+      "enum": [
+        "DOWNLOAD",
+        "API",
+        "STREAM",
+        "MQTT",
+        "KAFKA",
+        "DATA_LAKE",
+        "DATA_ROOM",
+        "SFTP"
+      ]
+    },
+    "fulfillment:accessUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Signed or time-limited URL for accessing the dataset. Required when fulfillment:accessMethod is DOWNLOAD."
+    },
+    "fulfillment:accessStart": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the access window (ISO 8601 date-time)."
+    },
+    "fulfillment:accessEnd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the access window. For streaming methods, use streamConnection.credentialExpiresAt instead."
+    },
+    "fulfillment:format": {
+      "type": "string",
+      "description": "File or message format (Parquet, CSV, JSON, Avro, NDJSON, ...)."
+    },
+    "fulfillment:fileSizeBytes": {
+      "type": "integer",
+      "description": "Approximate size of the delivered file in bytes (DOWNLOAD only)."
+    },
+    "fulfillment:maxDownloads": {
+      "type": "integer",
+      "description": "Maximum number of times the dataset can be downloaded (DOWNLOAD only)."
+    },
+    "fulfillment:downloadsUsed": {
+      "type": "integer",
+      "description": "Number of downloads already used by the buyer (DOWNLOAD only)."
+    },
+    "fulfillment:supportEmail": { "type": "string", "format": "email" },
+    "fulfillment:termsUrl": { "type": "string", "format": "uri" },
+    "fulfillment:attributionText": { "type": "string" },
+    "fulfillment:streamConnection": {
+      "type": "object",
+      "description": "Stream connection credentials provisioned for the buyer after confirm. Required when accessMethod is MQTT, KAFKA, API, or DATA_LAKE. All credentials MUST be short-lived; set credentialExpiresAt and instruct the buyer to call update before expiry for rotation. The @type discriminator determines which credential fields apply.",
+      "additionalProperties": true,
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "Credential shape discriminator.",
+          "enum": [
+            "MQTTConnection",
+            "KafkaConsumerCredentials",
+            "ApiCredential",
+            "DataLakeCredential"
+          ]
+        },
+        "fulfillment:credentialExpiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When these credentials expire. The buyer must call update before this timestamp to rotate credentials."
+        },
+
+        "fulfillment:brokerUri": {
+          "type": "string",
+          "description": "MQTT broker URI (e.g. mqtts://iotcore.example.com:8883). Required for MQTTConnection."
+        },
+        "fulfillment:topic": {
+          "type": "string",
+          "description": "MQTT topic filter (e.g. energy/meters/zone-a/#). Required for MQTTConnection."
+        },
+        "fulfillment:qos": {
+          "type": "integer",
+          "description": "MQTT QoS level.",
+          "enum": [0, 1, 2]
+        },
+        "fulfillment:clientId": { "type": "string" },
+        "fulfillment:username": { "type": "string" },
+        "fulfillment:password": { "type": "string" },
+        "fulfillment:tlsCaCert": { "type": "string" },
+        "fulfillment:sessionExpiry": {
+          "type": "string",
+          "description": "MQTT 5.0 Session Expiry Interval as ISO 8601 duration (e.g. PT24H)."
+        },
+
+        "fulfillment:bootstrapServers": {
+          "type": "string",
+          "description": "Comma-separated Kafka bootstrap server list. Required for KafkaConsumerCredentials."
+        },
+        "fulfillment:topicName": { "type": "string" },
+        "fulfillment:consumerGroupId": { "type": "string" },
+        "fulfillment:saslMechanism": {
+          "type": "string",
+          "enum": ["PLAIN", "SCRAM-SHA-256", "SCRAM-SHA-512", "OAUTHBEARER"]
+        },
+        "fulfillment:saslUsername": { "type": "string" },
+        "fulfillment:saslPassword": { "type": "string" },
+        "fulfillment:schemaRegistryUrl": { "type": "string", "format": "uri" },
+        "fulfillment:schemaRegistryUsername": { "type": "string" },
+        "fulfillment:schemaRegistryPassword": { "type": "string" },
+        "fulfillment:startOffset": {
+          "type": "string",
+          "enum": ["latest", "earliest"]
+        },
+
+        "fulfillment:apiEndpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL of the REST API. Required for ApiCredential."
+        },
+        "fulfillment:apiDocUrl": { "type": "string", "format": "uri" },
+        "fulfillment:authScheme": {
+          "type": "string",
+          "enum": ["BEARER", "API_KEY", "BASIC", "OAUTH2_CLIENT_CREDENTIALS"]
+        },
+        "fulfillment:bearerToken": { "type": "string" },
+        "fulfillment:apiKey": { "type": "string" },
+        "fulfillment:rateLimitRpm": { "type": "integer" },
+
+        "fulfillment:cloudProvider": {
+          "type": "string",
+          "enum": ["AWS_S3", "GCS", "AZURE_ADLS"]
+        },
+        "fulfillment:accessType": {
+          "type": "string",
+          "description": "Credential type for object storage access. PRESIGNED_URL — single signed URL. STS_CREDENTIALS — temporary IAM credentials. SAS_TOKEN — Azure SAS.",
+          "enum": ["PRESIGNED_URL", "STS_CREDENTIALS", "SAS_TOKEN"]
+        },
+        "fulfillment:bucket": { "type": "string" },
+        "fulfillment:storagePrefix": { "type": "string" },
+        "fulfillment:presignedUrl": { "type": "string", "format": "uri" },
+        "fulfillment:accessKeyId": { "type": "string" },
+        "fulfillment:secretAccessKey": { "type": "string" },
+        "fulfillment:sessionToken": { "type": "string" },
+        "fulfillment:sasToken": { "type": "string" },
+        "fulfillment:storageRegion": { "type": "string" },
+        "fulfillment:fileFormat": { "type": "string" },
+        "fulfillment:partitionPattern": { "type": "string" }
+      }
+    }
+  }
+}
