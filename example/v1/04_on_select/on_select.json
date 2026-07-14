@@ -52,7 +52,7 @@
                             "ds-rainprob-maharashtra-march-2025"
                         ],
                         "offerAttributes": {
-                            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld",
+                            "@context": "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1.0/context.jsonld",
                             "@type": "DatasetItem",
                             "schema:identifier": "ds-rainprob-maharashtra-march-2025",
                             "schema:name": "Rainwater Probability Maharashtra March 2025",
