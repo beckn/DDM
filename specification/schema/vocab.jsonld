@@ -1,0 +1,463 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "dataset": "https://beckn.org/schema/dataset#",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "fulfillment": "https://beckn.org/schema/dataset-fulfillment#"
+  },
+  "@graph": [
+    {
+      "@id": "dataset:DatasetItem",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetItem",
+      "rdfs:comment": "A dataset product in a Beckn catalog, extending schema.org Dataset.",
+      "rdfs:subClassOf": {
+        "@id": "schema:Dataset"
+      }
+    },
+    {
+      "@id": "dataset:refreshType",
+      "@type": "rdf:Property",
+      "rdfs:label": "refreshType",
+      "rdfs:comment": "Refresh model for the dataset (STATIC, RECURRING, REAL_TIME)."
+    },
+    {
+      "@id": "dataset:refreshFrequency",
+      "@type": "rdf:Property",
+      "rdfs:label": "refreshFrequency",
+      "rdfs:comment": "Refresh frequency when the dataset is recurring or real-time."
+    },
+    {
+      "@id": "dataset:granularity",
+      "@type": "rdf:Property",
+      "rdfs:label": "granularity",
+      "rdfs:comment": "Observation unit granularity of the dataset (e.g. GRID_DAILY, STATION_HOURLY)."
+    },
+    {
+      "@id": "dataset:rowCountEstimate",
+      "@type": "rdf:Property",
+      "rdfs:label": "rowCountEstimate",
+      "rdfs:comment": "Approximate number of rows in the dataset."
+    },
+    {
+      "@id": "dataset:columnCount",
+      "@type": "rdf:Property",
+      "rdfs:label": "columnCount",
+      "rdfs:comment": "Number of columns in the dataset."
+    },
+    {
+      "@id": "dataset:sensitivityLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": "sensitivityLevel",
+      "rdfs:comment": "Sensitivity classification for the dataset (PUBLIC, INTERNAL, CONFIDENTIAL, etc.)."
+    },
+    {
+      "@id": "dataset:qualityFlags",
+      "@type": "rdf:Property",
+      "rdfs:label": "qualityFlags",
+      "rdfs:comment": "Container for data quality metrics for the dataset."
+    },
+    {
+      "@id": "dataset:gapFilledPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "gapFilledPercent",
+      "rdfs:comment": "Percentage of records gap-filled by imputation."
+    },
+    {
+      "@id": "dataset:outlierRemovedPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "outlierRemovedPercent",
+      "rdfs:comment": "Percentage of records removed as outliers."
+    },
+    {
+      "@id": "dataset:latencyMinutes",
+      "@type": "rdf:Property",
+      "rdfs:label": "latencyMinutes",
+      "rdfs:comment": "Typical latency in minutes between observation and availability."
+    },
+    {
+      "@id": "dataset:uptime99DayPercent",
+      "@type": "rdf:Property",
+      "rdfs:label": "uptime99DayPercent",
+      "rdfs:comment": "Feed uptime percentage over the last 99 days."
+    },
+    {
+      "@id": "dataset:validationMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "validationMethod",
+      "rdfs:comment": "Standard or algorithm used for dataset validation."
+    },
+    {
+      "@id": "dataset:accessMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessMethod",
+      "rdfs:comment": "How the dataset is delivered: INLINE, DOWNLOAD, DATA_ENCLAVE, OFF_CHANNEL, MQTT, KAFKA, API, or DATA_LAKE. For streaming methods, credentials are provisioned in DatasetFulfillment after confirm."
+    },
+    {
+      "@id": "dataset:dataPayload",
+      "@type": "rdf:Property",
+      "rdfs:label": "dataPayload",
+      "rdfs:comment": "Optional inline data payload carrying actual dataset content within the beckn message. A self-describing JSON-LD object whose @context resolves to the payload schema."
+    },
+    {
+      "@id": "dataset:streamMeta",
+      "@type": "rdf:Property",
+      "rdfs:label": "streamMeta",
+      "rdfs:comment": "Catalog-time stream topology metadata (format, frequency, message schema URL). Present when accessMethod is MQTT, KAFKA, API, or DATA_LAKE. Does not contain credentials."
+    },
+    {
+      "@id": "dataset:streamProtocol",
+      "@type": "rdf:Property",
+      "rdfs:label": "streamProtocol",
+      "rdfs:comment": "Transport protocol for the stream (MQTT, KAFKA, API, DATA_LAKE). Informational mirror of accessMethod."
+    },
+    {
+      "@id": "dataset:messageFormat",
+      "@type": "rdf:Property",
+      "rdfs:label": "messageFormat",
+      "rdfs:comment": "Encoding format for stream messages or delivered files (e.g. JSON, NDJSON, Avro, Protobuf, Parquet, CSV)."
+    },
+    {
+      "@id": "dataset:updateFrequency",
+      "@type": "rdf:Property",
+      "rdfs:label": "updateFrequency",
+      "rdfs:comment": "How often new data arrives: ISO 8601 duration (e.g. PT15M) or REAL_TIME for sub-second streams."
+    },
+    {
+      "@id": "dataset:messageSchemaUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "messageSchemaUrl",
+      "rdfs:comment": "URL to the message or file schema (JSON Schema, Avro schema, Protobuf descriptor, or OpenAPI spec). Consumers use this to configure deserializers."
+    },
+    {
+      "@id": "dataset:verticalRange",
+      "@type": "rdf:Property",
+      "rdfs:label": "verticalRange",
+      "rdfs:comment": "Vertical extent of the dataset (e.g. surface, 0\u20132km AGL)."
+    },
+    {
+      "@id": "dataset:dataType",
+      "@type": "rdf:Property",
+      "rdfs:label": "dataType",
+      "rdfs:comment": "Type or representation of the data (e.g. GriddedProbabilityField, TimeSeries)."
+    },
+    {
+      "@id": "dataset:rawUpdateFrequency",
+      "@type": "rdf:Property",
+      "rdfs:label": "rawUpdateFrequency",
+      "rdfs:comment": "Frequency at which the underlying raw dataset is updated."
+    },
+    {
+      "@id": "dataset:latestRawDataAt",
+      "@type": "rdf:Property",
+      "rdfs:label": "latestRawDataAt",
+      "rdfs:comment": "Timestamp of the latest raw data available that feeds this dataset."
+    },
+    {
+      "@id": "fulfillment:DatasetFulfillment",
+      "@type": "rdfs:Class",
+      "rdfs:label": "DatasetFulfillment",
+      "rdfs:comment": "Access provisioning details for a fulfilled dataset order.",
+      "rdfs:subClassOf": {
+        "@id": "schema:DataDownload"
+      }
+    },
+    {
+      "@id": "fulfillment:accessMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessMethod",
+      "rdfs:comment": "How the dataset is accessed: DOWNLOAD, API, STREAM, MQTT, KAFKA, DATA_LAKE, DATA_ROOM, or SFTP."
+    },
+    {
+      "@id": "fulfillment:accessUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessUrl",
+      "rdfs:comment": "Signed or time-limited URL for accessing the dataset (DOWNLOAD only)."
+    },
+    {
+      "@id": "fulfillment:accessStart",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessStart",
+      "rdfs:comment": "Start of the access window (ISO 8601 date-time)."
+    },
+    {
+      "@id": "fulfillment:accessEnd",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessEnd",
+      "rdfs:comment": "End of the access window (ISO 8601 date-time). For streaming, use streamConnection.credentialExpiresAt."
+    },
+    {
+      "@id": "fulfillment:format",
+      "@type": "rdf:Property",
+      "rdfs:label": "format",
+      "rdfs:comment": "File or message format delivered (e.g. Parquet, CSV, JSON, Avro, NDJSON)."
+    },
+    {
+      "@id": "fulfillment:fileSizeBytes",
+      "@type": "rdf:Property",
+      "rdfs:label": "fileSizeBytes",
+      "rdfs:comment": "Approximate size of the delivered file in bytes (DOWNLOAD only)."
+    },
+    {
+      "@id": "fulfillment:maxDownloads",
+      "@type": "rdf:Property",
+      "rdfs:label": "maxDownloads",
+      "rdfs:comment": "Maximum number of times the dataset can be downloaded (DOWNLOAD only)."
+    },
+    {
+      "@id": "fulfillment:downloadsUsed",
+      "@type": "rdf:Property",
+      "rdfs:label": "downloadsUsed",
+      "rdfs:comment": "Number of downloads already used by the buyer (DOWNLOAD only)."
+    },
+    {
+      "@id": "fulfillment:supportEmail",
+      "@type": "rdf:Property",
+      "rdfs:label": "supportEmail",
+      "rdfs:comment": "Support email for issues related to dataset access."
+    },
+    {
+      "@id": "fulfillment:termsUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "termsUrl",
+      "rdfs:comment": "URL to the terms and conditions for dataset use."
+    },
+    {
+      "@id": "fulfillment:attributionText",
+      "@type": "rdf:Property",
+      "rdfs:label": "attributionText",
+      "rdfs:comment": "Required attribution text for the dataset."
+    },
+    {
+      "@id": "fulfillment:streamConnection",
+      "@type": "rdf:Property",
+      "rdfs:label": "streamConnection",
+      "rdfs:comment": "Stream connection credentials provisioned for the buyer after confirm. Required when accessMethod is MQTT, KAFKA, API, or DATA_LAKE. The @type field discriminates between MQTTConnection, KafkaConsumerCredentials, ApiCredential, and DataLakeCredential shapes."
+    },
+    {
+      "@id": "fulfillment:credentialExpiresAt",
+      "@type": "rdf:Property",
+      "rdfs:label": "credentialExpiresAt",
+      "rdfs:comment": "ISO 8601 date-time when the stream credentials expire. The buyer must call update before this timestamp to rotate credentials."
+    },
+    {
+      "@id": "fulfillment:brokerUri",
+      "@type": "rdf:Property",
+      "rdfs:label": "brokerUri",
+      "rdfs:comment": "MQTT broker URI (e.g. mqtts://iotcore.example.com:8883). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:topic",
+      "@type": "rdf:Property",
+      "rdfs:label": "topic",
+      "rdfs:comment": "MQTT topic filter the buyer subscribes to (e.g. energy/meters/zone-a/#). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:qos",
+      "@type": "rdf:Property",
+      "rdfs:label": "qos",
+      "rdfs:comment": "MQTT Quality of Service level (0, 1, or 2). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:clientId",
+      "@type": "rdf:Property",
+      "rdfs:label": "clientId",
+      "rdfs:comment": "MQTT client ID provisioned for this buyer. Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:username",
+      "@type": "rdf:Property",
+      "rdfs:label": "username",
+      "rdfs:comment": "MQTT username (short-lived credential). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:password",
+      "@type": "rdf:Property",
+      "rdfs:label": "password",
+      "rdfs:comment": "MQTT password or JWT token (short-lived). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:tlsCaCert",
+      "@type": "rdf:Property",
+      "rdfs:label": "tlsCaCert",
+      "rdfs:comment": "PEM-encoded CA certificate for TLS verification (mqtts:// connections). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:sessionExpiry",
+      "@type": "rdf:Property",
+      "rdfs:label": "sessionExpiry",
+      "rdfs:comment": "MQTT 5.0 Session Expiry Interval as ISO 8601 duration (e.g. PT24H). Used in MQTTConnection."
+    },
+    {
+      "@id": "fulfillment:bootstrapServers",
+      "@type": "rdf:Property",
+      "rdfs:label": "bootstrapServers",
+      "rdfs:comment": "Comma-separated Kafka bootstrap server list. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:topicName",
+      "@type": "rdf:Property",
+      "rdfs:label": "topicName",
+      "rdfs:comment": "Kafka topic to consume. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:consumerGroupId",
+      "@type": "rdf:Property",
+      "rdfs:label": "consumerGroupId",
+      "rdfs:comment": "Kafka consumer group ID provisioned for this buyer. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:saslMechanism",
+      "@type": "rdf:Property",
+      "rdfs:label": "saslMechanism",
+      "rdfs:comment": "SASL authentication mechanism (PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER). Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:saslUsername",
+      "@type": "rdf:Property",
+      "rdfs:label": "saslUsername",
+      "rdfs:comment": "Kafka SASL username or API key (short-lived). Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:saslPassword",
+      "@type": "rdf:Property",
+      "rdfs:label": "saslPassword",
+      "rdfs:comment": "Kafka SASL password or API secret (short-lived). Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:schemaRegistryUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "schemaRegistryUrl",
+      "rdfs:comment": "Schema Registry URL for Avro or Protobuf deserialization. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:schemaRegistryUsername",
+      "@type": "rdf:Property",
+      "rdfs:label": "schemaRegistryUsername",
+      "rdfs:comment": "Schema Registry username. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:schemaRegistryPassword",
+      "@type": "rdf:Property",
+      "rdfs:label": "schemaRegistryPassword",
+      "rdfs:comment": "Schema Registry password. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:startOffset",
+      "@type": "rdf:Property",
+      "rdfs:label": "startOffset",
+      "rdfs:comment": "Where to begin consuming: latest (default) or earliest. Used in KafkaConsumerCredentials."
+    },
+    {
+      "@id": "fulfillment:apiEndpoint",
+      "@type": "rdf:Property",
+      "rdfs:label": "apiEndpoint",
+      "rdfs:comment": "Base URL of the REST API. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:apiDocUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "apiDocUrl",
+      "rdfs:comment": "URL to the OpenAPI / Swagger specification. Buyers use this to auto-generate clients or explore endpoints. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:authScheme",
+      "@type": "rdf:Property",
+      "rdfs:label": "authScheme",
+      "rdfs:comment": "Authentication scheme for the API: BEARER, API_KEY, BASIC, or OAUTH2_CLIENT_CREDENTIALS. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:bearerToken",
+      "@type": "rdf:Property",
+      "rdfs:label": "bearerToken",
+      "rdfs:comment": "Short-lived bearer token (JWT). Rotate via update before credentialExpiresAt. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:apiKey",
+      "@type": "rdf:Property",
+      "rdfs:label": "apiKey",
+      "rdfs:comment": "Short-lived API key. Rotate via update before credentialExpiresAt. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:rateLimitRpm",
+      "@type": "rdf:Property",
+      "rdfs:label": "rateLimitRpm",
+      "rdfs:comment": "Requests per minute allowed under this contract. Used in ApiCredential."
+    },
+    {
+      "@id": "fulfillment:cloudProvider",
+      "@type": "rdf:Property",
+      "rdfs:label": "cloudProvider",
+      "rdfs:comment": "Cloud object storage provider: AWS_S3, GCS, or AZURE_ADLS. Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:accessType",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessType",
+      "rdfs:comment": "Credential type for cloud storage: PRESIGNED_URL, STS_CREDENTIALS, or SAS_TOKEN. Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:bucket",
+      "@type": "rdf:Property",
+      "rdfs:label": "bucket",
+      "rdfs:comment": "S3 or GCS bucket name. Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:storagePrefix",
+      "@type": "rdf:Property",
+      "rdfs:label": "storagePrefix",
+      "rdfs:comment": "Object key prefix scoped to this buyer's data partition. Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:presignedUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": "presignedUrl",
+      "rdfs:comment": "Pre-signed GET URL (PRESIGNED_URL access type only). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:accessKeyId",
+      "@type": "rdf:Property",
+      "rdfs:label": "accessKeyId",
+      "rdfs:comment": "AWS temporary access key ID (STS_CREDENTIALS only). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:secretAccessKey",
+      "@type": "rdf:Property",
+      "rdfs:label": "secretAccessKey",
+      "rdfs:comment": "AWS temporary secret access key (STS_CREDENTIALS only). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:sessionToken",
+      "@type": "rdf:Property",
+      "rdfs:label": "sessionToken",
+      "rdfs:comment": "AWS STS session token (STS_CREDENTIALS only). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:sasToken",
+      "@type": "rdf:Property",
+      "rdfs:label": "sasToken",
+      "rdfs:comment": "Azure SAS token appended to the blob or container URL (SAS_TOKEN only). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:storageRegion",
+      "@type": "rdf:Property",
+      "rdfs:label": "storageRegion",
+      "rdfs:comment": "Cloud region where the storage bucket is hosted. Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:fileFormat",
+      "@type": "rdf:Property",
+      "rdfs:label": "fileFormat",
+      "rdfs:comment": "Format of files in the storage path (e.g. NDJSON, Parquet, CSV). Used in DataLakeCredential."
+    },
+    {
+      "@id": "fulfillment:partitionPattern",
+      "@type": "rdf:Property",
+      "rdfs:label": "partitionPattern",
+      "rdfs:comment": "Partition path pattern for live-append datasets (e.g. year={yyyy}/month={MM}/day={dd}/). Used in DataLakeCredential."
+    }
+  ]
+}

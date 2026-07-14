@@ -14,7 +14,7 @@
     "bapId": "bap.example.com",
     "bapUri": "https://bap.example.com",
     "schemaContext": [
-      "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1/context.jsonld"
+      "https://raw.githubusercontent.com/beckn/DDM/main/specification/schema/DatasetItem/v1.0/context.jsonld"
     ],
     "transactionId": "550e8400-e29b-41d4-a716-446655440100",
     "messageId": "550e8400-e29b-41d4-a716-446655440101",
