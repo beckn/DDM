@@ -81,7 +81,7 @@
                         "code": "ACTIVE"
                     },
                     "considerationAttributes": {
-                        "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+                        "@context": "https://schema.nfh.global/PriceSpecification/v2.1/context.jsonld",
                         "@type": "PriceSpecification",
                         "currency": "INR",
                         "value": 4999.00,
@@ -110,7 +110,7 @@
                         "shortDesc": "Provider of climate and meteorological data"
                     },
                     "participantAttributes": {
-                        "@context": "https://schema.beckn.io/Provider/v2.1/context.jsonld",
+                        "@context": "https://schema.nfh.global/Provider/v2.1/context.jsonld",
                         "@type": "Provider",
                         "id": "climate-data-provider-001",
                         "descriptor": {
@@ -124,7 +124,7 @@
                         "name": "Hydrology Lab, Delhi"
                     },
                     "participantAttributes": {
-                        "@context": "https://schema.beckn.io/Consumer/v2.0/context.jsonld",
+                        "@context": "https://schema.nfh.global/Consumer/v2.0/context.jsonld",
                         "@type": "Consumer",
                         "role": "buyer",
                         "organization": {
