@@ -81,7 +81,7 @@
                         "code": "ACTIVE"
                     },
                     "considerationAttributes": {
-                        "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+                        "@context": "https://schema.nfh.global/PriceSpecification/v2.1/context.jsonld",
                         "@type": "PriceSpecification",
                         "currency": "INR",
                         "value": 4999.00,
@@ -109,7 +109,7 @@
                         "name": "Climate Data Provider"
                     },
                     "participantAttributes": {
-                        "@context": "https://schema.beckn.io/Organization/v2.0/context.jsonld",
+                        "@context": "https://schema.nfh.global/Organization/v2.0/context.jsonld",
                         "@type": "Organization",
                         "id": "climate-data-provider-001",
                         "name": "Climate Data Provider",
@@ -124,7 +124,7 @@
                         "name": "Hydrology Lab, Delhi"
                     },
                     "participantAttributes": {
-                        "@context": "https://schema.beckn.io/Organization/v2.0/context.jsonld",
+                        "@context": "https://schema.nfh.global/Organization/v2.0/context.jsonld",
                         "@type": "Organization",
                         "id": "buyer-hydrology-lab-001",
                         "name": "Hydrology Lab, Delhi",
@@ -143,7 +143,7 @@
                     "considerationId": "consideration-pricing",
                     "status": "COMPLETE",
                     "settlementAttributes": {
-                        "@context": "https://schema.beckn.io/Payment/v2.0/context.jsonld",
+                        "@context": "https://schema.nfh.global/Payment/v2.0/context.jsonld",
                         "@type": "Payment",
                         "beckn:paymentStatus": "COMPLETED",
                         "beckn:amount": {

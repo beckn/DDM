@@ -119,7 +119,7 @@
                   "code": "ACTIVE"
                 },
                 "considerationAttributes": {
-                  "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+                  "@context": "https://schema.nfh.global/PriceSpecification/v2.1/context.jsonld",
                   "@type": "PriceSpecification",
                   "currency": "INR",
                   "value": 2499.00,
@@ -212,7 +212,7 @@
                   "code": "ACTIVE"
                 },
                 "considerationAttributes": {
-                  "@context": "https://schema.beckn.io/PriceSpecification/v2.1/context.jsonld",
+                  "@context": "https://schema.nfh.global/PriceSpecification/v2.1/context.jsonld",
                   "@type": "PriceSpecification",
                   "currency": "INR",
                   "value": 4999.00,

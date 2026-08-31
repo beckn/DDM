@@ -1,6 +1,6 @@
 # DatasetItem v1.0
 
-**Schema ID:** `https://schema.beckn.io/DatasetItem/v1.0`
+**Schema ID:** `https://schema.nfh.global/DatasetItem/v1.0`
 **Status:** Superseded by [v1.1](../v1.1/)
 
 ---

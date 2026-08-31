@@ -2,7 +2,7 @@
 
 Access provisioning details for a fulfilled dataset order, attached via `beckn:deliveryAttributes` / `performance[].performanceAttributes`. Extends [schema.org DataDownload](https://schema.org/DataDownload).
 
-**Canonical IRI:** `https://schema.beckn.io/DatasetFulfillment/v1.1`
+**Canonical IRI:** `https://schema.nfh.global/DatasetFulfillment/v1.1`
 
 ---
 

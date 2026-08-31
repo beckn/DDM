@@ -2,7 +2,7 @@
 
 Metadata for a dataset product listed in a Beckn catalog, attached via `beckn:itemAttributes`. Extends [schema.org Dataset](https://schema.org/Dataset) with marketplace-specific fields: refresh model, granularity, sensitivity, quality metrics, and access method.
 
-**Canonical IRI:** `https://schema.beckn.io/DatasetItem/v1.1`
+**Canonical IRI:** `https://schema.nfh.global/DatasetItem/v1.1`
 
 ---
 
